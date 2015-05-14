@@ -5,7 +5,7 @@ class Controller extends Singleton {
 		
 	}
 
-	//отображение
+	//отображение (последовательно формирует переменную $data['content'])
 	public function view ($file,$data="null") {
 		$file = VIEW.$file.'.php';
 		ob_start();
