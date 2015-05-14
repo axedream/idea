@@ -38,14 +38,15 @@ class eArray extends Singleton{
     public function arrayReturn(){
         return $this->Array;
     }	
-
+	/*
 	public function eA($newArray){
 		return self::getInstance()->loadArray($newArray);
 	}
+	*/
 }
 	//красивое представление многомерного массива
-	/*
-	function easyA($newArray){
-		return easyArray::getInstance()->loadArray($newArray);
-	}
-	*/
+	
+function eA($newArray){
+	return eArray::getInstance()->loadArray($newArray);
+}
+	

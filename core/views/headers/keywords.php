@@ -1,0 +1,1 @@
+<meta name="keywords" content="<?= eA($this->config)->html->keywords ?>"/>

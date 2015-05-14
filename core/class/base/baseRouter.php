@@ -11,12 +11,12 @@ class Router extends Singleton {
 	
 	
 	function __construct () {
-		$this->regExp['controller']	= eArray::gi()->eA(App::gi()->config)->regexp->uri->controller;
-		$this->regExp['action']		= eArray::gi()->eA(App::gi()->config)->regexp->uri->action;
-		$this->regExp['id']			= eArray::gi()->eA(App::gi()->config)->regexp->uri->id;
-		$this->def_controller		= eArray::gi()->eA(App::gi()->config)->default_controller;
-		$this->def_action			= eArray::gi()->eA(App::gi()->config)->default_action;
-		$this->def_id				= eArray::gi()->eA(App::gi()->config)->default_id;
+		$this->regExp['controller']	= eA(App::gi()->config)->regexp->uri->controller;
+		$this->regExp['action']		= eA(App::gi()->config)->regexp->uri->action;
+		$this->regExp['id']			= eA(App::gi()->config)->regexp->uri->id;
+		$this->def_controller		= eA(App::gi()->config)->default_controller;
+		$this->def_action			= eA(App::gi()->config)->default_action;
+		$this->def_id				= eA(App::gi()->config)->default_id;
 		}
 	
 	//функция парсинга ЧПУ (человекопонятный урл)

@@ -1,6 +1,6 @@
 <?php
 function class_autoload($class_name) {
-	$file = CORE . 'base'.$class_name.'.php';
+	$file = CORECLASSBASE . 'base'.$class_name.'.php';
 	if( file_exists($file) == false ) return false;
 	require_once ($file);
 }

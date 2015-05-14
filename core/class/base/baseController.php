@@ -18,4 +18,5 @@ class Controller extends Singleton {
 			return true;
 			}
 		}
+		
 }
