@@ -2,9 +2,13 @@
 <html lang="ru">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<title></title>
-	</head>
+		<?=$data['description']?>
+		<?=$data['keywords']?>
+		<title><?=$data['title']?></title>
+		<?=$data['css']?>
+		<?=$data['js']?>
+		</head>
 <body>
-	Базовый шаблон страницы
+	<?=$data['content'];?>
 </body>
 </html>

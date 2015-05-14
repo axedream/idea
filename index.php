@@ -2,10 +2,10 @@
 
 define('ROOT',dirname(__FILE__).'/');				//корень
 define('CORE',dirname(__FILE__).'/core/');			//ядро
-define('APP' ,dirname(__FILE__).'/web/');			//наше приложение
 define('CONF',dirname(__FILE__).'/conf/');			//конфигурация
-define('PLUG',dirname(__FILE__).APP.'plugins/');	//дополнительные компаненты (CSS,JS,...)
-
+define('APP' ,dirname(__FILE__).'/web/');			//наше приложение
+define('PLUG', APP . 'plugins/');					//дополнительные компаненты (CSS,JS,...)
+define('VIEW', APP . 'views/');						//отображение
 
 require_once CONF.'autoload.php';					//базовые классы
 

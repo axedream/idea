@@ -1,11 +1,16 @@
 <?php
 class Main extends Controller {
 	
-	function __construct () {
+	
+	public function __construct () {
 			parent::__construct();
 	}
 
 	public function action_index() {
-		echo __CLASS__;
-	} 
+		$data['test'] = "URL";
+		
+		$this->view("test2",$data);
+		$this->view("test",$data);
+		
+		} 
 }

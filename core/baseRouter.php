@@ -1,22 +1,23 @@
 <?php
 class Router extends Singleton {
-	public $controller;
-	public $action;
-	public $id;
-	public $def_controller;
-	public $def_action;
-	public $def_id;
-	public $config;
-	private $regExp;
+	public $controller;			//контроллер
+	public $action;				//действие 
+	public $id;					//текущее ИД
+	public $def_controller;		//контроллер загружаемый по дефолту
+	public $def_action;			//действие загружаемое по дефолту
+	public $def_id;				//ID загружаемые по дефолту
+	public $config;				//весь конфиг
+	private $regExp;			//регулярные выражения для проверки
+	
 	
 	function __construct () {
 		$this->regExp['controller']	= eArray::gi()->eA(App::gi()->config)->regexp->uri->controller;
 		$this->regExp['action']		= eArray::gi()->eA(App::gi()->config)->regexp->uri->action;
 		$this->regExp['id']			= eArray::gi()->eA(App::gi()->config)->regexp->uri->id;
-		$this->def_controller		= App::gi()->config['default_controller'];
-		$this->def_action			= App::gi()->config['default_action'];
-		$this->def_id				= App::gi()->config['default_id'];
-	}
+		$this->def_controller		= eArray::gi()->eA(App::gi()->config)->default_controller;
+		$this->def_action			= eArray::gi()->eA(App::gi()->config)->default_action;
+		$this->def_id				= eArray::gi()->eA(App::gi()->config)->default_id;
+		}
 	
 	//функция парсинга ЧПУ (человекопонятный урл)
 	function parse(){
