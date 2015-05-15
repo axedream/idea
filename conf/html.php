@@ -1,7 +1,7 @@
 <?php
 return array (
 	'layouts'		=> 'layouts/main',
-	'title' 		=> 'HOST-1 from idEa',
+	'title' 		=> 'FW idEa',
 	'keywords'		=> 'Ключевые слова',
 	'description'	=> 'Общий контекст',
 	'css'			=> 
