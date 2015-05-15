@@ -14,9 +14,9 @@ class Router extends Singleton {
 		$this->regExp['controller']	= eA(App::gi()->config)->regexp->uri->controller;
 		$this->regExp['action']		= eA(App::gi()->config)->regexp->uri->action;
 		$this->regExp['id']			= eA(App::gi()->config)->regexp->uri->id;
-		$this->def_controller		= eA(App::gi()->config)->default_controller;
-		$this->def_action			= eA(App::gi()->config)->default_action;
-		$this->def_id				= eA(App::gi()->config)->default_id;
+		$this->def_controller		= eA(App::gi()->config)->appconfig->default_controller;
+		$this->def_action			= eA(App::gi()->config)->appconfig->default_action;
+		$this->def_id				= eA(App::gi()->config)->appconfig->default_id;
 		}
 	
 	//функция парсинга ЧПУ (человекопонятный урл)
@@ -41,6 +41,5 @@ class Router extends Singleton {
 			else $this->id = $this->def_id;
 		}
 		else $this->id = $this->def_id;
-		
 	}
 }

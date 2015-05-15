@@ -1,5 +1,5 @@
 <?php
-class Model {
+class Model extends Singleton{
 	public function __construct() {
 		
 	}

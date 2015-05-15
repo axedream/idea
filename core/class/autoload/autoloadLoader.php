@@ -5,12 +5,12 @@ function class_autoload($class_name) {
 	require_once ($file);
 }
 function controller_autoload($class_name) {
-	$file = APP . 'controllers/controller_'.$class_name.'.php';
+	$file = APP . 'controllers/'.$class_name.'.php';
 	if( file_exists($file) == false ) return false;
 	require_once ($file);
 }
 function model_autoload($class_name) {
-	$file = APP . 'models/model_'.$class_name.'.php';
+	$file = APP . 'models/'.$class_name.'.php';
 	if( file_exists($file) == false ) return false;
 	require_once ($file);
 }

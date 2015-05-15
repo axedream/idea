@@ -1,1 +1,1 @@
-<script type="text/javascript" src="<?= $dir_js ?>"></script>
+<script type="text/javascript" src="<?= $data ?>"></script>

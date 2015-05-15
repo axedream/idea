@@ -1,7 +1,22 @@
 <?php
+function request_url() {
+	$result = ''; // Пока результат пуст
+	$default_port = 80; // Порт по-умолчанию
+	if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS']=='on')) {
+		$result .= 'https://';
+		$default_port = 443;
+		} 
+	else $result .= 'http://';
+	$result .= $_SERVER['SERVER_NAME'];
+	if ($_SERVER['SERVER_PORT'] != $default_port) $result .= ':'.$_SERVER['SERVER_PORT'];
+	$result .= $_SERVER['REQUEST_URI'];
+	return $result;
+}
 
-define('ROOT',dirname(__FILE__).'/');					//корень
-define('CORE',dirname(__FILE__).'/core/');				//ядро
+$input = str_replace('\\','/',__DIR__);
+define('URL', request_url());							//URL
+define('ROOT',$input.'');								//корень
+define('CORE',$input.'/core/');							//ядро
 define('CORECLASS',CORE.'class/');						//ядро классов
 define('CORECLASSBASE',CORECLASS.'base/');				//ядро классов базовое
 define('CORECLASSAUTOLOAD',CORECLASS.'autoload/');		//ядро классов автозагрузочное
@@ -9,10 +24,11 @@ define('COREVIEWS',CORE.'views/');						//ядро отображений
 define('COREVIEWSFORM',COREVIEWS.'forms/');				//ядро отображений форм
 define('COREVIEWSHEADERS',COREVIEWS.'headers/');		//ядро отображений заголовков
 define('COREVIEWSBUTTONS',COREVIEWS.'buttons/');		//ядро отображений кнопок
-define('CONF',dirname(__FILE__).'/conf/');				//конфигурация
-define('APP' ,dirname(__FILE__).'/web/');				//наше приложение
-define('PLUG', APP . 'plugins/');						//дополнительные компаненты (CSS,JS,...)
+define('CONF',$input.'/conf/');							//конфигурация
+define('APP' ,$input.'/web/');							//наше приложение
+define('PLUG', URL . 'web/plugins/');					//дополнительные компаненты (CSS,JS,...)
 define('VIEW', APP . 'views/');							//отображение
+
 
 /*
 echo "<table>";
@@ -36,3 +52,4 @@ require_once CORECLASSAUTOLOAD.'autoloadLoader.php';	//класс автозаг
 require_once CORECLASSAUTOLOAD.'autoloadArray.php';		//класс обработки массивов
 
 App::gi()->start();										//goooo!
+

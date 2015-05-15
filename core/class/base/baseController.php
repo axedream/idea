@@ -8,6 +8,7 @@ class Controller extends Singleton {
 	//отображение (последовательно формирует переменную $data['content'])
 	public function view ($file,$data="null") {
 		$file = VIEW.$file.'.php';
+		//echo $file;
 		ob_start();
 		if( file_exists($file) == false ) return false;
 		else{

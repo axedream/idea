@@ -7,7 +7,7 @@ class App extends Singleton{
 	public function __construct() {}
 	
 	function start(){
-		$this->config = include CONF.'config.php';						//полключаем конфиг
+		$this->config = include CONF.'config.php';
 		Router::gi()->parse();
 	
 		$cn = Router::gi()->controller;	$controller	= ucfirst($cn);
@@ -29,23 +29,26 @@ class App extends Singleton{
 		//сборка и загрузка страницы
 		$this->getConf();
 		$this->viewFinal();	
+		//echo "<pre>";
+		//var_dump ($this->data);
 	}//END START	
 	
 	//устанавливаем все параметры
 	private function getConf () {
+	
 		$this->data['description'] 		=	$this->viewCore(COREVIEWSHEADERS.'description');	//описание
 		$this->data['keywords']			=	$this->viewCore(COREVIEWSHEADERS.'keywords');		//ключевые слова
 		$this->data['title'] 			= 	eA($this->config)->html->title;						//заголовок
-		$this->data['file']				=	VIEW.eA($this->config)->layouts.'.php';				//файл макета
+		$this->data['file']				=	VIEW.eA($this->config)->html->layouts.'.php';		//файл макета
 
-		for ($i=0;$i<=count(eA(App::gi()->config)->html->css); $i++) {
+		for ($i=0;$i<=count(eA($this->config)->html->css); $i++) {
 			$dir_css = eA($this->config)->html->css->$i;
-			$this->data['css'] = $this->data['css'].$this->viewCore(COREVIEWSHEADERS.'css');
+			$this->data['css'] = $this->data['css'].$this->viewCore(COREVIEWSHEADERS.'css',$dir_css);
 			}
 			
-		for ($i=0;$i<=count(eA(App::gi()->config)->html->js); $i++) {
+		for ($i=0;$i<=count( eA($this->config)->html->js); $i++) {
 			$dir_js = eA($this->config)->html->js->$i;
-			$this->data['js'] = $this->data['js'].$this->viewCore(COREVIEWSHEADERS.'js');
+			$this->data['js'] = $this->data['js'].$this->viewCore(COREVIEWSHEADERS.'js',$dir_js);
 			}
 
 	}

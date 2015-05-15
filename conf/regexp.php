@@ -1,5 +1,4 @@
 <?php
-
 return array (
 	'uri'	=> [
 		'controller' 	=> '/^[a-zA-Z0-9+_\-]{2,20}$/',
