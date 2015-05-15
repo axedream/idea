@@ -1,0 +1,6 @@
+1. Вызываем получение данных из кнтроллера пользователя 		localhost\web\controllers\
+2. Обращение передаем модели пользовательского контроллера		localhost\web\models\
+3. Вызываем и модели контроллера базовый клсаа модели			localhost\core\class\base\baseModel.php
+4. Вызываем формирование запроса через библиотеку DLL_DB		localhost\core\class\base\baseDLL_DB.php
+5. Вызываем запрос (get|set) в головном контроллере DB			localhost\core\class\base\baseMySQLDB.php
+6. Через return возвращаем обратно ответ (при get в виде массива)

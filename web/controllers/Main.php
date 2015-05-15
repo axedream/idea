@@ -11,14 +11,18 @@ class Main extends Controller {
 		$this->view("test/test1",model_Main::gi()->getTestTexData());
 
 		//запись в базу данных
-		//model_Main::gi()->setDBDataUSER (['login'=>'test','password'=>'supertest','usergroup'=>'3','name'=>'ПОЛЬЗОВАТЕЛЬ']);	//записать в базу данных
+		//echo model_Main::gi()->setDBDataUSER (['login'=>'test1','password'=>'supertest','usergroup'=>'1','name'=>'ПОЛЬЗОВАТЕЛЬ2']);	//записать в базу данных
 		
 		//удаление из базы данных
-		//model_Main::gi()->delDBDataUSER (['login'=>'test'],"=");	//записать в базу данных
+		//echo model_Main::gi()->delDBDataUSER (['login'=>'test'],"=");	//записать в базу данных
 		
 		//обновляем данные пользователя
-		//model_Main::gi()->updateDBDataUSER (['password'=>'super'],['login'=>'test']);	//записать в базу данных
+		//echo model_Main::gi()->updateDBDataUSER (['password'=>'1'],['login'=>'test']);	//записать в базу данных
 		
+		//получаем все данные пользователя
+		//$m=model_Main::gi()->getDBDataUSER(['login','password','name'],['login' => 'test2'],'=');
+		//echo "<pre>"; var_dump ($m);
+
 		} 
 		
 }	

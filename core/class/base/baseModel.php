@@ -27,5 +27,11 @@ class Model extends Singleton{
 			else return false;
 			return $output;			
 			}
+		if ($key=="select") {
+			$request = DLL_DB::gi()->selectDB ($table,$keys,$area,$mass);
+			if ($request) $output=MySQLDB::gi()->getDBData($request);
+			else return false;
+			return $output;			
+			}
 		}
 }
