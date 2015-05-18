@@ -1,7 +1,7 @@
 <?php
 class eArray extends Singleton{
-	private static $instance; // Состояние класса.
-	private $Array; // Массив, который был передан классу.
+	public static $instance; // Состояние класса.
+	public $Array; // Массив, который был передан классу.
 
 	function __construct(){}
 	

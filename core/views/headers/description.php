@@ -1,1 +1,1 @@
-<meta name="description" content="<?= eA($this->config)->html->description ?>" />
+<meta name="description" content="<?= eA(App::gi()->config)->html->description ?>" />

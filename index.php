@@ -19,6 +19,9 @@ define('ROOT',$input.'');								//корень
 define('CORE',$input.'/core/');							//ядро
 define('CORECLASS',CORE.'class/');						//ядро классов
 define('CORECLASSBASE',CORECLASS.'base/');				//ядро классов базовое
+
+define('MODCLASSBASE',CORECLASS.'mod/');				//ядро классов модульное
+
 define('CORECLASSAUTOLOAD',CORECLASS.'autoload/');		//ядро классов автозагрузочное
 define('COREVIEWS',CORE.'views/');						//ядро отображений
 define('COREVIEWSFORM',COREVIEWS.'forms/');				//ядро отображений форм
@@ -36,6 +39,7 @@ echo "<tr><td>КОРЕНЬ 							</td><td>".ROOT."				</td></tr>";
 echo "<tr><td>ЯДРО 								</td><td>".CORE."				</td></tr>";
 echo "<tr><td>ЯДРО КЛАССОВ 						</td><td>".CORECLASS."			</td></tr>";
 echo "<tr><td>ЯДРО КЛАССОВ БАЗОВОЕ				</td><td>".CORECLASSBASE."		</td></tr>";
+echo "<tr><td>ЯДРО КЛАССОВ МОДУЛЬНОЕ			</td><td>".MODCLASSBASE."		</td></tr>";
 echo "<tr><td>ЯДРО КЛАССОВ АВТОЗАГРУЗОЧНОЕ		</td><td>".CORECLASSAUTOLOAD."	</td></tr>";
 echo "<tr><td>ЯДРО ОТОБРАЖЕНИЙ					</td><td>".COREVIEWS."			</td></tr>";
 echo "<tr><td>ЯДРО ОТОБРАЖЕНИЙ ФОРМ				</td><td>".COREVIEWSFORM."		</td></tr>";
@@ -52,4 +56,3 @@ require_once CORECLASSAUTOLOAD.'autoloadLoader.php';	//класс автозаг
 require_once CORECLASSAUTOLOAD.'autoloadArray.php';		//класс обработки массивов
 
 App::gi()->start();										//goooo!
-

@@ -16,5 +16,7 @@ abstract class Singleton{
 		return self::getInstance($className);
 	}
 	final private function __clone(){}
+		
 	private function __construct(){}
+	
 }
