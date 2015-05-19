@@ -1,5 +1,5 @@
 <?php
-class Main extends Controller {
+class About extends Controller {
 	
 	
 	public function __construct () {
@@ -23,7 +23,7 @@ class Main extends Controller {
 		//кнопка в контейнере
 		//$button = $this->view->show('test/button1',['textTitle'=>'Заголовок','baseText'=>'Нажми её','textButton'=>'СуперКнопка'],1);
 		//$this->view->show('test/div',['test'=>$button]);
-		$this->view->show('test/main');
+		$this->view->show('test/about');
 		
 		} 
 	

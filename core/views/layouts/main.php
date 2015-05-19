@@ -9,13 +9,13 @@
 		<?= $js ?>
 		</head>
 <body>
-<div class="container boxShadowMain">
+<div class="container boxShadowMain" id="conteiner" >
 	<div class="row">
 		<?= $header ?>
 		<?= $menu ?>
 		<?= $content ?>
 		<?= $footer ?>
 	</div>
-</div>
+</div>	
 </body>
 </html>

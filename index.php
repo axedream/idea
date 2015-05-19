@@ -1,20 +1,10 @@
 <?php
-function request_url() {
-	$result = ''; // Пока результат пуст
-	$default_port = 80; // Порт по-умолчанию
-	if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS']=='on')) {
-		$result .= 'https://';
-		$default_port = 443;
-		} 
-	else $result .= 'http://';
-	$result .= $_SERVER['SERVER_NAME'];
-	if ($_SERVER['SERVER_PORT'] != $default_port) $result .= ':'.$_SERVER['SERVER_PORT'];
-	$result .= $_SERVER['REQUEST_URI'];
-	return $result;
-}
 
 $input = str_replace('\\','/',__DIR__);
-define('URL', request_url());							//URL
+
+//define('URL', 'http://host-1.ru/');	
+define('URL', 'http://localhost/');						//URL
+
 define('ROOT',$input.'');								//корень
 define('CORE',$input.'/core/');							//ядро
 define('CORECLASS',CORE.'class/');						//ядро классов

@@ -5,6 +5,9 @@ class App extends Singleton{
 	public $data;
 	private $view;
 	public $modules;
+	public $controller;
+	public $action;
+	
 	public function __construct() {
 		$this->view = new Viewer();
 	}
@@ -16,18 +19,23 @@ class App extends Singleton{
 		$cn = Router::gi()->controller;	$controller	= ucfirst($cn);
 		$ac = Router::gi()->action;		$action		= "action_".$ac;
 		if(method_exists($controller, $action)) {
-			$controller = new $controller;
+			$this->controller = $controller;
+			$this->action = $action;
+			$controller = new $controller; 
 			$controller->$action();
 			}	
 		else{
 			//вывести страницу по дефолту
 			$cn = Router::gi()->def_controller; $controller	= ucfirst($cn);
 			$ac = Router::gi()->def_action;		$action		= "action_".$ac;
-		if(method_exists($controller, $action)) {
-			$controller = new $controller;
-			$controller->$action();
-			}
-		}// END ELSE СТРАНИЦЫ ПО ДЕФОЛТУ
+
+			if(method_exists($controller, $action)) {
+				$this->controller = $controller;
+				$this->action = $action;
+				$controller = new $controller;
+				$controller->$action();
+				}
+			}// END ELSE СТРАНИЦЫ ПО ДЕФОЛТУ
 		
 		//сборка и загрузка страницы
 		$this->getConf();

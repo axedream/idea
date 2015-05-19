@@ -19,7 +19,9 @@ class DLL_DB extends MySQLDB {
 			else $key = $key."`,`".$mass[$i];
 			}			
 		}
-	$request = "SELECT `".$key."` FROM `".$table."` WHERE `".$p1."` ".$flag." '".$p2."';"; 
+	$request['where']	=	"SELECT `".$key."` FROM `".$table."` WHERE `".$p1."` ".$flag." '".$p2."';"; 
+	$request['all']		=	"SELECT `".$key."` FROM `".$table."` ;"; 
+
 	return $request;
 	}
 	

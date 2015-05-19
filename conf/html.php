@@ -7,12 +7,15 @@ return array (
 			[
 			PLUG.'bootstrap/css/bootstrap.min.css',
 			PLUG.'css/style.css',
-			PLUG.'css/header.css'
+			PLUG.'css/header.css',
+			PLUG.'css/menu.css'			
 			],
-	'js'		=>
+	'js'			=>
 			[
 			PLUG.'jquery/jquery-2.1.4.js',
-			PLUG.'bootstrap/js/bootstrap.min.js'
+			PLUG.'bootstrap/js/bootstrap.min.js',
+			PLUG.'js/center.js'
 			],
-	'modules'		=>	include CONF.'modules.php'
+	'modules'		=>	include CONF.'modules.php',
+	'menu'			=>	include CONF.'menu.php'
 	);

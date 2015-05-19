@@ -1,6 +1,7 @@
 .imglogo {
 	margin-top:5px;
 	margin-bottom: 5px;
-	width: 100px;
-	height: 100px;
+}
+.textBlock {
+	padding-right: 10px;
 }
