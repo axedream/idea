@@ -5,13 +5,14 @@ return array (
 	'description'	=>	'Общий контекст',
 	'css'			=> 
 			[
-			'0'		=>	PLUG.'bootstrap/css/bootstrap.min.css',
-			'1'		=>	PLUG.'css/style.css'
+			PLUG.'bootstrap/css/bootstrap.min.css',
+			PLUG.'css/style.css',
+			PLUG.'css/header.css'
 			],
 	'js'		=>
 			[
-			'0'		=>	PLUG.'jquery/jquery-2.1.4.js',
-			'1'		=>	PLUG.'bootstrap/js/bootstrap.min.js'
+			PLUG.'jquery/jquery-2.1.4.js',
+			PLUG.'bootstrap/js/bootstrap.min.js'
 			],
 	'modules'		=>	include CONF.'modules.php'
 	);

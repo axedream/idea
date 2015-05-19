@@ -9,7 +9,7 @@
 		<?= $js ?>
 		</head>
 <body>
-<div class="container">
+<div class="container boxShadowMain">
 	<div class="row">
 		<?= $header ?>
 		<?= $menu ?>

@@ -5,10 +5,8 @@ class App extends Singleton{
 	public $data;
 	private $view;
 	public $modules;
-	
 	public function __construct() {
 		$this->view = new Viewer();
-		$this->modules="";
 	}
 	
 	function start(){
@@ -44,16 +42,13 @@ class App extends Singleton{
 		$this->data['description'] 		=	$this->view->show(COREVIEWSHEADERS.'description','',1,1);			//описание
 		$this->data['keywords']			=	$this->view->show(COREVIEWSHEADERS.'keywords','',1,1);				//ключевые слова
 		$this->data['title'] 			= 	eA($this->config)->html->title;										//заголовок
-		for ($i=0;$i<=count(eA($this->config)->html->css); $i++) {
-			$dir_css = eA($this->config)->html->css->$i;
-			$this->data['css'] = $this->data['css'].$this->view->show(COREVIEWSHEADERS.'css',$dir_css,1,1);
-			}
-			
-		for ($i=0;$i<=count( eA($this->config)->html->js); $i++) {
-			$dir_js = eA($this->config)->html->js->$i;
-			$this->data['js'] = $this->data['js'].$this->view->show(COREVIEWSHEADERS.'js',$dir_js,1,1);
-			}
-	}
+		
+		if (count ($this->config['html']['css'])>0) foreach ($this->config['html']['css'] as $k => $v)
+			$this->data['css'] = $this->data['css']."\r\n".$this->view->show(COREVIEWSHEADERS.'css',$v,1,1);	
+
+		if (count($this->config['html']['js'])>0) foreach ($this->config['html']['js'] as $k => $v)
+			$this->data['js'] = $this->data['js']."\r\n".$this->view->show(COREVIEWSHEADERS.'js',$v,1,1);
+		}
 
 	//собираем до контента
 	public function getPathBeforContent() {
@@ -63,7 +58,7 @@ class App extends Singleton{
 				foreach ($v as $kk => $vv ) {
 					if ($vv['class']=='true') {
 						$kclass = ucfirst($kk); 
-						$kclass::gi()->run;
+						$kclass::gi()->run();
 						}
 					if ($vv['file']=="true") $this->data['file'] = COREVIEWS.$vv['link'].'.php';
 					else $this->data[$kk] = $this->view->show(COREVIEWS.$vv['link'],$this->modules,1,1);					

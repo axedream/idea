@@ -9,6 +9,14 @@ class Viewer {
 	//$flagdir	-	если ture тогда читается как конечный каталог
 	public function show($file=false,$data=false,$key=false,$flagdir=false) {
 
+		/*
+		if ($file=="W:/domains/localhost/core/views/layouts/header"){
+			echo "<pre>";
+			var_dump($data['urlImgLogo']);
+			}
+		echo $file."<br>";
+		*/
+		
 		if (!$file) return false;
 		if (!$flagdir) $file = VIEW.$file.'.php';
 		else $file = $file.'.php';

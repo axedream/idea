@@ -4,6 +4,5 @@ class Menu extends Singleton{
 
 	//устанавливает меняет свойства меню
 	public function run() {
-	echo "TEST MENU<BR>";
 	}
 }

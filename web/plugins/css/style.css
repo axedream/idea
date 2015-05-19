@@ -1,5 +1,12 @@
+body {
+	background-color: white;
+}
 .container {	
 	margin-left: 15px;
 	margin-right: 15px;
-	
+}
+.boxShadowMain { 
+	margin: 10px auto; 
+	padding: 20px; 
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .3), -23px 0 20px -23px rgba(0, 0, 0, .8), 23px 0 20px -23px rgba(0, 0, 0, .8), 0 0 40px rgba(0, 0, 0, .1) inset;
 }

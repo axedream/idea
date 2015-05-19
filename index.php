@@ -19,9 +19,8 @@ define('ROOT',$input.'');								//корень
 define('CORE',$input.'/core/');							//ядро
 define('CORECLASS',CORE.'class/');						//ядро классов
 define('CORECLASSBASE',CORECLASS.'base/');				//ядро классов базовое
-
 define('MODCLASSBASE',CORECLASS.'mod/');				//ядро классов модульное
-
+define('COREIMG',URL.'core/views/');					//картинки ядра
 define('CORECLASSAUTOLOAD',CORECLASS.'autoload/');		//ядро классов автозагрузочное
 define('COREVIEWS',CORE.'views/');						//ядро отображений
 define('COREVIEWSFORM',COREVIEWS.'forms/');				//ядро отображений форм
@@ -31,6 +30,7 @@ define('CONF',$input.'/conf/');							//конфигурация
 define('APP' ,$input.'/web/');							//наше приложение
 define('PLUG', URL . 'web/plugins/');					//дополнительные компаненты (CSS,JS,...)
 define('VIEW', APP . 'views/');							//отображение
+
 
 
 /*

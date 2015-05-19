@@ -4,6 +4,7 @@ class Header extends Singleton{
 
 	//устанавливает меняет свойства заголовка
 	public function run() {
-	echo "TEST HEADER<BR>";
-	}
+		//логотип
+		App::gi()->modules = ['urlImgLogo' => COREIMG.'img/logo.jpg', 'classImgLogo' => 'imglogo'];
+		}
 }
