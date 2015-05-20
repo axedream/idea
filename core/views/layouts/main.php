@@ -13,9 +13,19 @@
 	<div class="row">
 		<?= $header ?>
 		<?= $menu ?>
-		<?= $content ?>
+		
+		<div class="content">
+			<?= $content ?>
+		</div>
+		
+	
 		<?= $footer ?>
+		
 	</div>
 </div>	
+
+	
+	<?= $modal ?>
+	
 </body>
 </html>

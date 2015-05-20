@@ -27,8 +27,8 @@ class Viewer {
 			if( file_exists($file) == false ) return false;
 			else{
 				include $file;
-				if (!$key) App::gi()->data['content'] = App::gi()->data['content']."\r\n".ob_get_contents();
-				else $out = ob_get_contents();
+				if ($key) $out = ob_get_contents();
+				else App::gi()->data['content'] = App::gi()->data['content']."\r\n".ob_get_contents();
 				ob_clean();
 				ob_end_flush();
 				if (!$key) return true;

@@ -1,2 +1,0 @@
-1. Вызываем контроллер пользователя			 			localhost\web\controllers\
-2. Вызываем родительскую модель контроллера				localhost\core\class\base\baseController.php

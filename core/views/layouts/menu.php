@@ -2,10 +2,10 @@
   <div class="container-fluid">
 		<div class="row menu">
 				<ul class="nav nav-pills navbar-left">	
-				  <?= $button['base'] ?>
+				  <?= $menu['base'] ?>
 				</ul>
 				<ul class="nav nav-pills navbar-right">
-					<?= $button['log'] ?>
+					<?= $menu['log'] ?>
 				</ul>
 		</div>
 	</div>

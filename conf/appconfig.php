@@ -1,6 +1,6 @@
 <?php
 return array (
-	'default_controller' 	=> 'Main',
-	'default_action' 		=> 'Index',
+	'default_controller' 	=> 'main',
+	'default_action' 		=> 'index',
 	'default_id'			=> ''
 );

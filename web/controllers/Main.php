@@ -6,7 +6,7 @@ class Main extends Controller {
 			parent::__construct();
 	}
 
-	public function action_index() {
+	public function action_Index() {
 		//запись в базу данных
 		//echo model_Main::gi()->setDBDataUSER (['login'=>'test1','password'=>'supertest','usergroup'=>'1','name'=>'ПОЛЬЗОВАТЕЛЬ2']);	//записать в базу данных
 		

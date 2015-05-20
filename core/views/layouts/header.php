@@ -1,5 +1,5 @@
 	<div class="row">
-		<div class="hidden-xs-12 hidden-sm-12 col-md-12 col-lg-12">
+		<div class="hidden-xs-12 hidden-xs-12 col-md-12 col-lg-12">
 			<div class="hidden-xs col-sm-2 col-md-2 col-lg-2 text-center">
 				<img src="<?= $urlImgLogo ?>" class="img-rounded <?= $classImgLogo ?>" alt="Go-go-go!!!">
 			</div>
@@ -7,7 +7,7 @@
 				<div class="text-right">
 					<h2>Портал [НУЖНО ЧТО ТО ПРИДУМАТЬ И РАЗВИВАТЬ]</h2>
 				</div>
-				<div class="quote">
+				<div class="quote hidden-xs hidden-sm col-md-12 col-lg-12">
 					<blockquote class="pull-right">
 								<?= $HeaderTextString ?>
 						<small>

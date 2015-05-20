@@ -18,14 +18,25 @@ return array (
 				'glyphicon'		=>	'glyphicon-eye-open'
 			],
 
+	'register'	=>
+			[
+				'controller'	=>	'login',
+				'action'		=>	'register',
+				'id'			=>	false,
+				'name'			=>	'Регистрация',
+				'group'			=>	'register',
+				'glyphicon'		=>	'glyphicon-registration-mark'
+			],
 			
 	'login'	=>
 			[
-				'action'		=>	'#',
+				'action'		=>	'login',
 				'id'			=>	false,
 				'name'			=>	'Войти',
 				'group'			=>	'login',
-				'glyphicon'		=>	'glyphicon-log-in'
+				'glyphicon'		=>	'glyphicon-log-in',
+				'modal'			=>	'data-toggle="modal" data-target="#myModal"',
+				'modal_box'		=>	'login/modalLoginForm'
 			],
 
 	'logout'	=>
