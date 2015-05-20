@@ -5,7 +5,7 @@ class eArray extends Singleton{
 
 	function __construct(){}
 	
-	public static function getInstance(){
+	public static function getInstanceArray(){
 		if(null === self::$instance) self::$instance = new self();
 		return self::$instance;
 	}
@@ -43,6 +43,6 @@ class eArray extends Singleton{
 	//красивое представление многомерного массива
 	
 function eA($newArray){
-	return eArray::getInstance()->loadArray($newArray);
+	return eArray::getInstanceArray()->loadArray($newArray);
 }
 	

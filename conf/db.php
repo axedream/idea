@@ -2,8 +2,8 @@
 return array (
 	'host' 		=> 'localhost',
 	'port'		=> '3306',
-	'user' 		=> 'root',
-	'password' 	=> '',
+	'user' 		=> 'host1',
+	'password' 	=> 'ZXC123vbn',
 	'dbname' 	=> 'host1',
 	'pref' 		=> ''
 );

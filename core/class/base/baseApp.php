@@ -73,10 +73,10 @@ class App extends Singleton{
 		$this->data['title'] 			= 	eA($this->config)->html->title;										//заголовок
 		
 		if (count ($this->config['html']['css'])>0) foreach ($this->config['html']['css'] as $k => $v)
-			$this->data['css'] = $this->data['css']."\r\n".$this->view->show(COREVIEWSHEADERS.'css',$v,1,1);	
+			@$this->data['css'] = $this->data['css']."\r\n".$this->view->show(COREVIEWSHEADERS.'css',$v,1,1);	
 
 		if (count($this->config['html']['js'])>0) foreach ($this->config['html']['js'] as $k => $v)
-			$this->data['js'] = $this->data['js']."\r\n".$this->view->show(COREVIEWSHEADERS.'js',$v,1,1);
+			@$this->data['js'] = $this->data['js']."\r\n".$this->view->show(COREVIEWSHEADERS.'js',$v,1,1);
 		}
 
 	//собираем модули до контента
@@ -90,7 +90,7 @@ class App extends Singleton{
 						$kclass::gi()->run();
 						//echo "Модуль: ".$kclass."<br>";
 						}
-					if ($vv['file']=="true") $this->data['file'] = COREVIEWS.$vv['link'].'.php';
+					if (isset($vv['file'])) $this->data['file'] = COREVIEWS.$vv['link'].'.php';
 					else $this->data[$kk] = $this->view->show(COREVIEWS.$vv['link'],$this->modules,1,1);					
 					}
 				}

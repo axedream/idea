@@ -1,6 +1,7 @@
 <?php
-
+date_default_timezone_set('Asia/Novosibirsk');
 $input = str_replace('\\','/',__DIR__);
+
 
 //define('URL', 'http://host-1.ru/');	
 define('URL', 'http://localhost/');						//URL

@@ -20,7 +20,6 @@ class MySQLDB extends Singleton {
 		$this->mysqlDBPort		=	eA(App::gi()->config)->db->port;
 		$this->mysqlDBName		=	eA(App::gi()->config)->db->dbname;
 		$this->mysqlDBHostname	=	$this->mysqlDBHost.":".$this->mysqlDBPort;
-		$this->inputQuery		=	$query;
 	}
 	
 	
@@ -38,7 +37,7 @@ class MySQLDB extends Singleton {
 	if (!mysqli_connect_errno()) {
 		$dbConnect = mysqli_connect($this->mysqlDBHostname, $this->mysqlDBLogin, $this->mysqlDBPassword, $this->mysqlDBName);
 		$this->DataDB['error']['connect']['status'] 	= true; 
-		$this->DataDB['error']['connect']['code'] 		= 0; 
+		$this->DataDB['error']['connect']['code'] 		= false; 
 		
 		//--------------------------------------flag GET-----------------------------------------------//
 		if ($this->flagDB == "getDBData"){
@@ -46,11 +45,11 @@ class MySQLDB extends Singleton {
 			$dbQuery = $dbConnect->query($this->inputQuery);
 			if ($dbQuery) {
 				$this->DataDB['error']['selectquery']['status'] 	= true; 
-				$this->DataDB['error']['selectquery']['code'] 		= 0; 
+				$this->DataDB['error']['selectquery']['code'] 		= false; 
 				$getData = $dbQuery->fetch_assoc();
 				if ($getData!=null) {
 					$this->DataDB['error']['getdata']['status'] 	= true; 
-					$this->DataDB['error']['getdata']['code'] 		= 0; 
+					$this->DataDB['error']['getdata']['code'] 		= false; 
 					$this->DataDB['data'][$flagNum]= $getData;
 					while ($getData = $dbQuery->fetch_assoc()){
 						++$flagNum;
@@ -78,7 +77,7 @@ class MySQLDB extends Singleton {
 		//echo "<br><br>!!!SET!!!<br><br>";
 			if ($dbConnect->query($this->inputQuery)){
 				$this->DataDB['error']['setdata']['status'] 	= true; 
-				$this->DataDB['error']['setdata']['code'] 		= 0; 
+				$this->DataDB['error']['setdata']['code'] 		= false; 
 			}
 			else {
 				$this->DataDB['error']['setdata']['status'] 	= false; 
@@ -90,7 +89,7 @@ class MySQLDB extends Singleton {
 		
 		if ($mysqli->close())	{
 			$this->DataDB['error']['disconnect']['status'] 	= true; 
-			$this->DataDB['error']['disconnect']['code'] 	= 0; 
+			$this->DataDB['error']['disconnect']['code'] 	= false; 
 		} 
 		else {
 			$this->DataDB['error']['disconnect']['status'] 	= false; 
@@ -115,9 +114,9 @@ class MySQLDB extends Singleton {
 		$this->runDB();
 		
 		//обработка ошибок
-		if (eA($this->DataDB)->error->connect->code == "0") {
-			if (eA($this->DataDB)->error->selectquery->code == "0") {
-				if (eA($this->DataDB)->error->getdata->code == "0") {
+		if (!eA($this->DataDB)->error->connect->code) {
+			if (!eA($this->DataDB)->error->selectquery->code) {
+				if (!eA($this->DataDB)->error->getdata->code) {
 					return $this->DataDB;
 					}
 				else return '01';
