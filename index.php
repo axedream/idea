@@ -1,10 +1,12 @@
 <?php
+
+$server = $_SERVER['SERVER_ADDR'];
 date_default_timezone_set('Asia/Novosibirsk');
+
+if ($server=="192.168.54.110")	define('URL', 'http://host-1.ru/');	//реальный хост	
+if ($server=="127.0.0.1")		define('URL', 'http://localhost/');	//URL
+
 $input = str_replace('\\','/',__DIR__);
-
-
-//define('URL', 'http://host-1.ru/');	
-define('URL', 'http://localhost/');						//URL
 
 define('ROOT',$input.'');								//корень
 define('CORE',$input.'/core/');							//ядро

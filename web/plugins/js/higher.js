@@ -7,7 +7,7 @@
 	$heightScreen	=	window.innerHeight;
 	$heightBlock	=	$(div).outerHeight();
 	$delta = $heightScreen - $heightBlock;
-	$pr = 97;
+	$pr = 98;
 	if ($delta>0) $('#conteiner').css('height', ($heightScreen/100)*$pr);
 	else $('#footer').css('position','relative');
 	}

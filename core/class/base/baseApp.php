@@ -7,9 +7,11 @@ class App extends Singleton{
 	public $modules;
 	public $controller;					//вызванный пользовательский контроллер
 	public $action;						//вызванный пользовательское действие
+	public $rip;
 	
 	public function __construct() {
 		$this->view = new Viewer();
+		$this->rip = $_SERVER['REMOTE_ADDR'];
 	}
 	
 	//ключевой метод запуска движка
