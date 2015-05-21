@@ -1,10 +1,41 @@
 <?php
 class DLL_DB extends MySQLDB {
 
+	public $dataDB;
 
+	//дополнительные данные для формирования постоянной части таблицных записей
+	public function getHelpData ($table) {
+		if (!isset($table)) return false;
+		$this->dataDB['table']	=	$table;
+		$this->dataDB['uid']	=	$this->getUid();
+		$this->dataDB['id']		=	$this->getId($table)+1;
+		$this->dataDB['DT']		=	$this->getDateTime();
+		$this->dataDB['DA']		=	$this->getDateTime(1);
+		$this->dataDB['user']	=	$_SESSION['user'];
+		$this->dataDB['group']	=	$_SESSION['group'];
+		$this->dataDB['IP']		=	App::gi()->rip;
+		$this->dataDB['active']	=	true;
+		}
+
+	//уникальный UID
 	public function getUid () {
 		return md5(date(DATE_RFC2822).rand(5,15000));
-	}	
+		}
+	
+	//последний ID в таблице
+	public function getId($table) {
+		$request	=	"SELECT id FROM `".$table."` ORDER BY id DESC LIMIT 1;";
+		$data = MySQLDB::gi()->getDBDataEasy($request);
+		return $lastId = ($data) ? $lastId = $data['id'] : false ;
+		}
+
+	//текущая дата на сервере если key установлен то возвращается датавремя если нет только дата
+	public function getDateTime ($key=false) {
+		if (!$key) return date('Y-m-d H:i:s');
+		else return date('Y-m-d');
+		}
+	
+	
 	
 	//$mass - поля, которые ищем, $table - таблица базы данных, $area - поле = > значение по которому ищей 1 шт.	
 	public function selectDB ($table,$flag,$area,$mass) {

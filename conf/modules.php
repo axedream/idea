@@ -1,24 +1,24 @@
 <?php
 return array (
-	'layouts'	=>
+	'layouts'	=>								//класс
 			[
-				'link'		=>	'layouts/main',		//сслыка на файл отображения
-				'class'		=>	'false',			//загружат одноименный класс
-				'file'		=>	'true'
+				'link'		=>	'layouts/main',	//сслыка на файл отображения
+				'class'		=>	false,			//загружат одноименный класс
+				'file'		=>	true			//признак загрузки данного модуля как основного
 			],
 	'header'	=>
 			[
 				'link'		=>	'layouts/header',
-				'class'		=>	'true'
+				'class'		=>	true
 			],
 	'menu'		=>
 			[
 				'link'		=>	'layouts/menu',
-				'class'		=>	'true'
+				'class'		=>	true
 			],
 	'footer'	=>
 			[	
 				'link'		=>	'layouts/footer',
-				'class'		=>	'false'
+				'class'		=>	false
 			]
 );

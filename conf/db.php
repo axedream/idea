@@ -5,5 +5,5 @@ return array (
 	'user' 		=> 'host1',
 	'password' 	=> 'ZXC123vbn',
 	'dbname' 	=> 'host1',
-	'pref' 		=> ''
+	'pref' 		=> 'IDEa_'
 );

@@ -126,18 +126,49 @@ class MySQLDB extends Singleton {
 		else return '03';		
 		}
 
+	//простая выборка из базы данных  query - Запрос; (подразумевает одиночный ответ)
+	public function getDBDataEasy ($query="none") {
+		if ($query!="none") $this->inputQuery =	$query;
+		$this->flagDB = "getDBData";
+		$this->runDB();
+		
+		//обработка ошибок
+		if (!eA($this->DataDB)->error->connect->code) {
+			if (!eA($this->DataDB)->error->selectquery->code) {
+				if (!eA($this->DataDB)->error->getdata->code) {
+					return $this->DataDB['data'][0];	//возврат ассоциативного массива поле = значение;
+					}
+				else return false;
+				}
+			else return false;
+			}
+		else return false;		
+		}
+		
+		
 	//запись в базу данных
 	public function setDBData($query="none") {
 		if ($query!="none") $this->inputQuery =	$query;
 		$this->flagDB = "setDBData";
 		$this->runDB();
 		//обработка ошибок
-		if (eA($this->DataDB)->error->connect->code == "0") {
-			if (eA($this->DataDB)->error->setdata->code == "0") return "OK";
+		if (!$this->DataDB['error']['connect']['code']) {
+			if (!$this->DataDB['error']['setdata']['code']) return true;
 			else return '02';
 			}
 		else return '03';
 		}
 	
-	
+	//запись в базу данных
+	public function setDBDataEasy($query="none") {
+		if ($query!="none") $this->inputQuery =	$query;
+		$this->flagDB = "setDBData";
+		$this->runDB();
+		//обработка ошибок
+		if (!$this->DataDB['error']['connect']['code']) {
+			if (!$this->DataDB['error']['setdata']['code']) return true;
+			else return false;
+			}
+		else return false;
+		}	
 }
