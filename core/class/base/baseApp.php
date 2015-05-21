@@ -81,7 +81,7 @@ class App extends Singleton{
 					$kclass = ucfirst($k); 
 					$kclass::gi()->run();
 					}
-				if ($v['file']) $this->data['file'] = COREVIEWS.$v['link'].'.php';
+				@if ($v['file']) $this->data['file'] = COREVIEWS.$v['link'].'.php';
 				else $this->data[$k] = $this->view->show(COREVIEWS.$v['link'],$this->modules,1,1);				
 				}
 			}
