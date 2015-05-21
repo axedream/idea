@@ -27,7 +27,7 @@ class Main extends Controller {
 		DLL_DB::gi()->getHelpData ('header_dynamictext');
 		$mass = DLL_DB::gi()->dataDB;
 		
-		$this->view->show('test/main',$mass);
+		$this->view->show('test/mainTest',$mass);
 		
 		} 
 	

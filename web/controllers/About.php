@@ -23,7 +23,7 @@ class About extends Controller {
 		//кнопка в контейнере
 		//$button = $this->view->show('test/button1',['textTitle'=>'Заголовок','baseText'=>'Нажми её','textButton'=>'СуперКнопка'],1);
 		//$this->view->show('test/div',['test'=>$button]);
-		$this->view->show('test/about');
+		$this->view->show('test/aboutTest');
 		
 		} 
 	
