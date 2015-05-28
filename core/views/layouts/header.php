@@ -5,7 +5,7 @@
 			</div>
 			<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 textBlock">
 				<div class="text-right">
-					<h2>Портал IDEa [НУЖНО ЧТО-ТО ПРИДУМАТЬ И РАЗВИВАТЬ]</h2>
+					<h2>Портал IDEa</h2>
 				</div>
 				<div class="quote hidden-xs hidden-sm col-md-12 col-lg-12">
 					<blockquote class="pull-right">

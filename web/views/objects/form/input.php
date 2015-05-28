@@ -1,1 +1,0 @@
-<input type="<?= $type ?>" class="form-control" id="<?= $id ?>" name="<?= $name ?>" placeholder="<?= $ph ?>" value="<?= $value ?>">

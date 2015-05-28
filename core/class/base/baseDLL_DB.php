@@ -99,7 +99,6 @@ class DLL_DB extends MySQLDB {
 			}
 		else return false;
 
-        echo "p1: ".$p1." p2: ".$p2."<br>";
 
 		foreach ($this->mass as $k  => $v) {
 			if (!isset($key))  $key = "`".$k."` = '".$v."'";

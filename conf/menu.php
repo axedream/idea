@@ -1,6 +1,6 @@
 <?php
 return array (
-	/*
+	
 	'main'	=>
 			[
 				'action'		=>	'index',
@@ -9,7 +9,7 @@ return array (
 				'group'			=>	'base',
 				'glyphicon'		=>	'glyphicon-home'
 			],
-	*/
+	
 	'about'	=>
 			[
 				'action'		=>	'index',
@@ -18,7 +18,7 @@ return array (
 				'group'			=>	'base',
 				'glyphicon'		=>	'glyphicon-eye-open'
 			],
-	/*		
+			
 	'register'	=>
 			[
 				'controller'	=>	'login',
@@ -26,17 +26,21 @@ return array (
 				'id'			=>	false,
 				'name'			=>	'Регистрация',
 				'group'			=>	'register',
-				'glyphicon'		=>	'glyphicon-registration-mark'
+				'glyphicon'		=>	'glyphicon-registration-mark',
+				'modal'			=>	'data-toggle="modal" data-target="#modalRegister"',
+				'modal_box'		=>	'login/modalRegisterForm'
+				
 			],
 
 	'login'	=>
 			[
+				'controller'	=>	'login',
 				'action'		=>	'login',
 				'id'			=>	false,
 				'name'			=>	'Войти',
 				'group'			=>	'login',
 				'glyphicon'		=>	'glyphicon-log-in',
-				'modal'			=>	'data-toggle="modal" data-target="#myModal"',
+				'modal'			=>	'data-toggle="modal" data-target="#modalLogin"',
 				'modal_box'		=>	'login/modalLoginForm'
 			],
 	
@@ -48,27 +52,5 @@ return array (
 				'group'			=>	'logout',
 				'glyphicon'		=>	'glyphicon-log-out'
 			],
-    */
-			
-	'help'	=>
-			[
-				'controller'	=>	'help',
-				'action'		=>	'index',
-				'id'			=>	false,
-				'name'			=>	'Справочники',
-				'group'			=>	'base',
-				'glyphicon'		=>	'glyphicon-list-alt'
-			],
- 	'objects'	=>
-			[
-				'controller'	=>	'objects',
-				'action'		=>	'index',
-				'id'			=>	false,
-				'name'			=>	'Объекты',
-				'group'			=>	'base',
-				'glyphicon'		=>	'glyphicon-picture'
-			],
-
-
-			
+    
 	);

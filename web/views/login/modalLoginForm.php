@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 		
@@ -40,41 +40,48 @@
 					</div>
 				</div>
 				<!-- Конец блока для ввода пароля-->
+
+
 			</form>
-			</div>
-          
+			</div>				
+
 			<!-- Нижняя часть модального окна -->
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
 				<button id="save" type="button" class="btn btn-primary">Войти</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>				
 			</div>
+
 		</div>
 	</div>
 </div>
 
 
 <script>
-  $(function() {
+$(function() {
 	$('#save').click(function() {
-	  var formValid = true;
-	  $('input').each(function() {
-	  var formGroup = $(this).parents('.form-group');
-	  var glyphicon = formGroup.find('.form-control-feedback');
-	  if (this.checkValidity()) {
-		formGroup.addClass('has-success').removeClass('has-error');
-		glyphicon.addClass('glyphicon-ok').removeClass('glyphicon-remove');
-	  } else {
-		formGroup.addClass('has-error').removeClass('has-success');
-		glyphicon.addClass('glyphicon-remove').removeClass('glyphicon-ok');
-		formValid = false;  
-	  }
-	});
+		var formValid = true;
+		$('input').each(function() {
+			var formGroup = $(this).parents('.form-group');
+			var glyphicon = formGroup.find('.form-control-feedback');
+
+			if (this.checkValidity()) {
+				formGroup.addClass('has-success').removeClass('has-error');
+				glyphicon.addClass('glyphicon-ok').removeClass('glyphicon-remove');
+				} 
+				
+			else {
+				formGroup.addClass('has-error').removeClass('has-success');
+				glyphicon.addClass('glyphicon-remove').removeClass('glyphicon-ok');
+				formValid = false;  
+				}
+		});
+		
 	if (formValid) {
-	  $('#myModal').modal('hide');	
-	  $('#success-alert').removeClass('hidden');
-	  $('#formSend').submit();
-	}
-  });
+		$('#modalLogin').modal('hide');	
+		$('#success-alert').removeClass('hidden');
+		$('#formSend').submit();
+		}
+	});
 });
 </script>	
 

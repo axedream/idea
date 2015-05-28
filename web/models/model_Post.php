@@ -9,6 +9,7 @@ class model_Post extends Model {
 	function __construct (){
 		parent::__construct();
 	}
+	
   //get Input Data Valid - получение и проверка данных через базовый класс base
   //$area проверяемое поле, $model - регулярное выражение из конфига regexp в базовом классе base
   public function getIDV ($area,$model) {
