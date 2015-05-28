@@ -22,10 +22,8 @@
 		<?= $footer ?>
 		
 	</div>
-</div>
-
-	
-	<?= $modal ?>
-	
+</div>	
 </body>
 </html>
+
+<?= $modal ?>

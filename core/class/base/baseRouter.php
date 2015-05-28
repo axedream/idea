@@ -11,12 +11,12 @@ class Router extends Singleton {
 	
 	
 	function __construct () {
-		$this->regExp['controller']	= eA(App::gi()->config)->regexp->uri->controller;
-		$this->regExp['action']		= eA(App::gi()->config)->regexp->uri->action;
-		$this->regExp['id']			= eA(App::gi()->config)->regexp->uri->id;
-		$this->def_controller		= eA(App::gi()->config)->appconfig->default_controller;
-		$this->def_action			= eA(App::gi()->config)->appconfig->default_action;
-		$this->def_id				= eA(App::gi()->config)->appconfig->default_id;
+		$this->regExp['controller']	= App::gi()->config['regexp']['uri']['controller'];
+		$this->regExp['action']		= App::gi()->config['regexp']['uri']['action'];
+		$this->regExp['id']			= App::gi()->config['regexp']['uri']['id'];
+		$this->def_controller		= App::gi()->config['appconfig']['default_controller'];
+		$this->def_action			= App::gi()->config['appconfig']['default_action'];
+		$this->def_id				= App::gi()->config['appconfig']['default_id'];
 		}
 	
 	//функция парсинга ЧПУ (человекопонятный урл)
@@ -36,10 +36,17 @@ class Router extends Singleton {
 		}
 		else $this->action = $this->def_action;
 		
-		if (!empty($routes[3])){
-			if (preg_match($this->regExp['id'], trim($routes[3]))) $this->id = $routes[3];
-			else $this->id = $this->def_id;
-		}
-		else $this->id = $this->def_id;
+
+		
+		for ($i=3;$i<=10;$i++){
+			if (!empty($routes[$i])){
+				if (preg_match($this->regExp['id'], trim($routes[$i])))	{ 
+					$this->id[$i-3]	= $routes[$i]; 
+					}
+			}
+		}//end for
+
+		if (!isset($this->id['0'])) $this->id['0'] = $this->def_id;
+
 	}
 }

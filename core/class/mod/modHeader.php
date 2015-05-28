@@ -6,7 +6,14 @@ class Header extends Singleton{
 
 	//получает "динамическую" цитату
 	public function getDinamicText () {
-		$data = Model::gi()->sigdDB('select','header_dynamictext',['dtext','autor'],['id' => date("d")] ,'=','where');
+		Model::gi()->key 			=	'select';
+		Model::gi()->table			=	'header_dynamictext';
+		Model::gi()->mass			=	['dtext','autor'];
+		Model::gi()->area			=	['id' => date("d")];
+		Model::gi()->flag			=	'=';
+		Model::gi()->select			=	'where';
+		$data = Model::gi()->sigdDB();
+
 		if (!$data['error']['connect']['code'] && !$data['error']['selectquery']['code'] && !$data['error']['getdata']['code']) {
 			App::gi()->modules['HeaderTextString']  = $data['data'][0]['dtext'];
 			App::gi()->modules['HeaderTextAutor'] = $data['data'][0]['autor'];

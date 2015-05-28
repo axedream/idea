@@ -112,18 +112,17 @@ class MySQLDB extends Singleton {
 		if ($query!="none") $this->inputQuery =	$query;
 		$this->flagDB = "getDBData";
 		$this->runDB();
-		
 		//обработка ошибок
-		if (!eA($this->DataDB)->error->connect->code) {
-			if (!eA($this->DataDB)->error->selectquery->code) {
-				if (!eA($this->DataDB)->error->getdata->code) {
+		if (!$this->DataDB['error']['connect']['code']) {
+			if (!$this->DataDB['error']['selectquery']['code']) {
+				if (!$this->DataDB['error']['getdata']['code']) {
 					return $this->DataDB;
 					}
-				else return '01';
+				else return '02';
 				}
-			else return '02';
+			else return '03';
 			}
-		else return '03';		
+		else return '04';		
 		}
 
 	//простая выборка из базы данных  query - Запрос; (подразумевает одиночный ответ)
@@ -131,12 +130,11 @@ class MySQLDB extends Singleton {
 		if ($query!="none") $this->inputQuery =	$query;
 		$this->flagDB = "getDBData";
 		$this->runDB();
-		
 		//обработка ошибок
-		if (!eA($this->DataDB)->error->connect->code) {
-			if (!eA($this->DataDB)->error->selectquery->code) {
-				if (!eA($this->DataDB)->error->getdata->code) {
-					return $this->DataDB['data'][0];	//возврат ассоциативного массива поле = значение;
+		if (!$this->DataDB['error']['connect']['code']) {
+			if (!$this->DataDB['error']['selectquery']['code']) {
+				if (!$this->DataDB['error']['getdata']['code']) {
+					return $this->DataDB['data']['0'];	//возврат ассоциативного массива поле = значение;
 					}
 				else return false;
 				}
@@ -153,7 +151,7 @@ class MySQLDB extends Singleton {
 		$this->runDB();
 		//обработка ошибок
 		if (!$this->DataDB['error']['connect']['code']) {
-			if (!$this->DataDB['error']['setdata']['code']) return true;
+			if (!$this->DataDB['error']['setdata']['code']) return '01';
 			else return '02';
 			}
 		else return '03';

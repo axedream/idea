@@ -1,0 +1,1 @@
+<label for="<?= $name ?>" class="col-xs-5 control-label textInput"><?= $text ?></label>

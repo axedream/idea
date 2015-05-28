@@ -1,63 +1,63 @@
 <?php
-class Model extends Singleton{
+class Post extends Singleton{
 
-	public $DataPOST;
+	public $dataPOST;
+	public $config;
+	public $error;
 	
-	function __construct() {}
-	
-	/*
-	@	обрабатываем данные из формы
-	@	получаем обратно массив 
-	@	ошибки
-	@	'error	=> 
-	@			'данные' => 
-	@				'status'		=>	'true/false - в зависимости от наличие ошибок'
-	@				'data'			=>	'описание ошибки'
-	@				'code'			=>	'код ошибки (по уровню вложенности проверок)'
-	@	данные
-	@	'data'	=> $rData	
-	@			'данные' => 
-	@				'method'	=>	'метод передачи - POST'
-	@				'value'		=>	'значение компаненты (поля)'
-	*/		
-	//функция проверки поля POST формы (area - наименование поля)
-	public function getPostData($area="none"){
-
-	//прорабатываем массив
-	$i="0"; $flag="0";
-	foreach (eA($App::gi()->config)->regexp->user as $k => $v) {
-		$i++;
-		if (eA($App::gi()->config)->regexp->user->$area==$k) $flag=1;
+	public function __construct() {
+		$this->config = App::gi()->config['regexp'];
 		}
-	
-	if ($i!="0" && $flag!="0" && $area!="none") $ReggExp = eA($App::gi()->config)->regexp->user->$area;
-	else return false;
-	
-	//echo $ReggExp."<br>";
-	//echo $_POST[$area]."<br>";
 
-	//логин
-	if (isset($_POST[$area])) {
-		if (preg_match($ReggExp, trim($_POST[$area]))) {
-			$this->DataPOST  ['data'][$area]['method'] 		= 'post'; 
-			$this->DataPOST  ['data'][$area]['value']		= trim($_POST[$area]);
-			$this->DataPOST  ['error'][$area]['status'] 	= false;  
-			$this->DataPOST  ['error'][$area]['code'] 		= 0;
+  //area - get area in post form
+  //rege - siarch in group 'base' regexp
+  public function getDataPostValid($area=FALSE,$rege=FALSE) {
+
+  	if (!$area) {
+  	  $this->error = 'Not set AREA';
+      return false;
+      }
+
+    if ($rege && isset($this->config['base'][$rege])) {
+      if (preg_match($this->config['base'][$rege], trim($_POST[$area]))) { $this->dataPOST = trim($_POST[$area]); return $this->dataPOST; }
+      else return FALSE;
+      }//end rege
+    else return FALSE;
+    }
+
+
+  //��������� �� ���� ����� � ������� ��������� ����� ����� rege + ����,
+  //area ��������� ���������� ���� � rgege ��������� ����� ����� ����������� �������� ����
+	public function getDataPost($area=FALSE,$rege=FALSE){
+
+	$keyRegExp = false;
+
+	if (!$area) { $this->error = 'Not set AREA'; return false; }
+	if ($rege) {
+    foreach ($this->config as $k => $v) {
+      if ($k==$rege) {
+        if (isset($v[$area])) {
+          $ReggExp = $v[$area];
+          $keyRegExp=true;
+          }
+        } //end $k==$rege
+      } //end foreach
+    } //end rege
+
+  //echo "REGEXP: ".$ReggExp."<br>";
+
+	if (isset($_POST[$area])){
+		if ($keyRegExp) {
+			if (preg_match($ReggExp, trim($_POST[$area]))) {
+				$this->dataPOST = trim($_POST[$area]);
+				}
+			else {$this->error = 'Not valid RegExp: '.$ReggExp; return false; }
 			}
-		else {
-			$this->DataPOST ['error'][$area]['status'] 		= true;
-			$this->DataPOST ['error'][$area]['data'] 		= "false of Reg_Exp";
-			$this->DataPOST ['error'][$area]['code'] 		= 2;
-			}
+		else $this->dataPOST = trim($_POST[$area]);
 		}
-	else {
-			$this->DataPOST ['error'][$area]['status'] 		= true;
-			$this->DataPOST ['error'][$area]['data'] 		= "not get data ".$area." of POST method";
-			$this->DataPOST ['error'][$area]['code'] 		= 1;
-		}
-//echo "<pre>";
-	//var_dump ($this->DataPOST);
-	return $this->DataPOST;
+	else { $this->error = 'Not insert data from InPut'; return false;}
+
+	return $this->dataPOST;
 	}
 
 }

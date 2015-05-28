@@ -7,6 +7,7 @@ class Viewer {
 	//$data		-	данные, массив ассоциативный хэш
 	//$key		- 	если установить true возврат обратно в запрос а не в общую переменную
 	//$flagdir	-	если ture тогда читается как конечный каталог
+	// show("file_name","$data(array)",(если 1 получаем назад контент),(если 1 строим свой путь))
 	public function show($file=false,$data=false,$key=false,$flagdir=false) {
 
 		/*

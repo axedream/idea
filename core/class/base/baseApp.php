@@ -7,6 +7,7 @@ class App extends Singleton{
 	public $modules;
 	public $controller;					//вызванный пользовательский контроллер
 	public $action;						//вызванный пользовательское действие
+	public $ac;							//действие без префикса
 	public $rip;
 	
 	public function __construct() {
@@ -39,6 +40,7 @@ class App extends Singleton{
 		if(method_exists($controller, $action)) {
 			$this->controller = $controller;
 			$this->action = $action;
+			$this->ac = $ac;
 			$controller = new $controller; 
 			$controller->$action();
 			}	
@@ -50,11 +52,12 @@ class App extends Singleton{
 			if(method_exists($controller, $action)) {
 				$this->controller = $controller;
 				$this->action = $action;
+				$this->ac = $ac;
 				$controller = new $controller;
 				$controller->$action();
 				}
 			else {
-				//echo "Полная жопа!!!"."<br>";
+				//echo "Полная "жопа"!!!"."<br>";
 				}
 			}// END ELSE СТРАНИЦЫ ПО ДЕФОЛТУ	
 		}
