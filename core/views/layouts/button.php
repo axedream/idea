@@ -1,4 +1,4 @@
 
 <li class="<?= $active ?>">
-	<a  href="<?= $url ?>"><span class="glyphicon <?= $glyphicon ?>"></span>&nbsp;&nbsp;<?= $name ?></a>
+	<a  href="<?= $url ?>" <?= $modal ?>><span class="glyphicon <?= $glyphicon ?>">&nbsp;</span><?= $name ?></a>
 </li>

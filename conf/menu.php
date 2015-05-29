@@ -10,7 +10,8 @@ return array (
 		'name'			=>	'Главная',
 		'glyphicon'		=>	'glyphicon-home',
 		'modal'			=>	false,
-		'modal_box'		=>	false
+		'modal_box'		=>	false,
+		'modal_url'		=>	false,
 	],
 'about' =>
 	[
@@ -21,7 +22,8 @@ return array (
 		'name'			=>	'Обратная связь',
 		'glyphicon'		=>	'glyphicon-eye-open',
 		'modal'			=>	false,
-		'modal_box'		=>	false
+		'modal_box'		=>	false,
+		'modal_url'		=>	false,
 		
 	],
 'login' =>
@@ -33,7 +35,8 @@ return array (
 		'name'			=>	'Войти',
 		'glyphicon'		=>	'glyphicon-log-in',
 		'modal'			=>	'data-toggle="modal" data-target="#modalLogin"',
-		'modal_box'		=>	'login/modalLoginForm'
+		'modal_box'		=>	'login/modalLoginForm',
+		'modal_url'		=>	'login/login',
 	],
 'logout'=>
 	[
@@ -44,7 +47,8 @@ return array (
 		'name'			=>	'Выйти',
 		'glyphicon'		=>	'glyphicon-log-out',
 		'modal'			=>	false,
-		'modal_box'		=>	false
+		'modal_box'		=>	false,
+		'modal_url'		=>	false,
 		
 	],  
 	);
