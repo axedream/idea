@@ -8,15 +8,39 @@ class Menu extends Singleton{
 	public $view;
 	
 	function __construct() {
-		$this->controller	=	App::gi()->controller;
-		$this->action		=	App::gi()->action;
-		$this->config		=	App::gi()->config['html']['menu'];
+		$this->controller	  =	App::gi()->controller;
+		$this->action		    =	App::gi()->action;
+		$this->config		    =	App::gi()->config['html']['menu'];
 		$this->view = new Viewer;
 		}
 
 	//метод построения кнопок
 	public function getAction (){
-		foreach ($this->config as $k => $v) {
+      $button = COREVIEWS.'layouts/button';
+
+
+      foreach ($this->config as $m =>$array) {
+        $array['controller'] = ucfirst($array['controller']);
+        $active = ($this->controller == $array['controller']) ? 'active' : '';
+        $url    = URL.$array['controller'].'/'.$array['action'].'/'.$array['id'];
+        $name   = $array['name'];
+        $glyphicon = $array['glyphicon'];
+        //echo $button."<br>";
+        //левый ряд кнопок
+        if ( $array['group'] == 'left' ) {
+          $this->button['left'] = @$this->button['left'].$this->view->show($button,['active'=>$active,'name'=>$name,'url'=>$url,'glyphicon'=>$glyphicon],1,1);
+          }//end left
+
+        //правый ряд кнопок (тут аторизации поэтому идет предварительный разбор)
+        if ( $array['group'] == 'right' ) {
+          if (User::gi()->flagAut && $m=='logout') $this->button['right'] = $this->view->show($button,['active'=>$active,'name'=>$name,'url'=>$url,'glyphicon'=>$glyphicon],1,1);
+          if (!User::gi()->flagAut && $m=='login') $this->button['right'] = $this->view->show($button,['active'=>$active,'name'=>$name,'url'=>$url,'glyphicon'=>$glyphicon],1,1);
+          }//end right
+        }//end foreach
+
+
+      //$this-$this->view->show(COREVIEWS.'layouts/button',[],1);
+      /*
 			if (isset($v['id'])) $id = $v['id'] ? $id = $v['id'] : '';
 			$glyphicon = $v['glyphicon'] ? "<span class=\"glyphicon ".$v['glyphicon']."\"></span>" : '';
 			$url = (isset($k['controller'])) ? URL.$v['controller'].'/'.$v['action'].'/'.$id : URL.$k.'/'.$v['action'].'/'.$id;
@@ -32,20 +56,16 @@ class Menu extends Singleton{
 
 			@$this->button[$v['group']] = $this->button[$v['group']]."\n\r".$active."<a ".$href.$v['modal'].">".$glyphicon."&nbsp;&nbsp;".$v['name']."</a></li>";
 
-            //подменю
-			if (isset($v['submenu'])) {
-				
-				}//submenu
-			}
-	}
-	
-	//устанавливает меняет свойства меню
-	public function run() {
-		//получаем посмтроенные кнопки
-		$this->getAction();
-		//кнопка авторизации (!!!!!!!!!!!!!!!продумать когда её ставить когда нет) - связать с сессией (продумать модуль авторизаци)
-		@$this->button['log'] = $this->button['log'].$this->button['register'].$this->button['login'];			//кнопка авторизации
+      */
 
+
+	}
+
+	public function run() {
+
+		$this->getAction();
+		//if (User::gi()->flagAut) @$this->button['log'] = $this->button['log'].$this->button['logout'];
+    //else @$this->button['log'] = $this->button['log'].$this->button['register'].$this->button['login'];			//кнопка авторизации
 		App::gi()->modules['menu'] = $this->button;
 		}
 }

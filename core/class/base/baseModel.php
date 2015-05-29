@@ -34,12 +34,11 @@ class Model extends Singleton{
 			else return false;
 			}
 		if ($this->key=="update") {
-			DLL_DB::gi()->table		=	$this->table;
+			DLL_DB::gi()->table		  =	$this->table;
 			DLL_DB::gi()->mass	    =	$this->mass;
 			DLL_DB::gi()->area	    =	$this->area;
-			$this->request          =   DLL_DB::gi()->updateDB();
-
-            $metod = 'setDBData'.$this->prefix;
+			$this->request          = DLL_DB::gi()->updateDB();
+      $metod = 'setDBData'.$this->prefix;
 			if ($this->request) return $this->output=MySQLDB::gi()->$metod($this->request);
 			else return false;
 			}

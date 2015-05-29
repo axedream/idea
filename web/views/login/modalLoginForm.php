@@ -20,7 +20,7 @@
 					<div class="col-xs-6">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<input type="text" class="form-control" required="required" name="login" pattern="[A-Za-z]{6,}">
+							<input type="text" class="form-control" required="required" name="login" pattern="[0-9A-Za-z]{4,20}">
 						</div>
 						
 						<span class="glyphicon form-control-feedback"></span>
@@ -33,7 +33,7 @@
 					<div class="col-xs-6">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-							<input type="password" class="form-control" required="required" name="password">
+							<input type="password" class="form-control" required="required" name="password" pattern="[0-9A-Za-z\-\_]{4,40}">
 						</div>
 						
 						<span class="glyphicon form-control-feedback"></span>

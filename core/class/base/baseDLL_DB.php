@@ -11,26 +11,26 @@ class DLL_DB extends MySQLDB {
 	public $output;
 	public $flag;
   public $trable=FALSE;
-	
+
 	//дополнительные данные для формирования постоянной части таблицных записей
 	public function getHelpData () {
 		if (!isset($this->table)) return false;
-		$this->dataDB['table']	=	$this->table;
-		$this->dataDB['uid']	=	$this->getUid();
-		$this->dataDB['id']		=	$this->getId($table)+1;
-		$this->dataDB['DT']		=	$this->getDateTime();
-		$this->dataDB['DA']		=	$this->getDateTime(1);
-		$this->dataDB['user']	=	$_SESSION['user'];
-		$this->dataDB['group']	=	$_SESSION['group'];
-		$this->dataDB['IP']		=	App::gi()->rip;
-		$this->dataDB['active']	=	true;
+		$this->dataDB['table']	=	$this->table;           //текущая таблица
+		$this->dataDB['uid']	  =	$this->getUid();        //uid записи
+		$this->dataDB['id']		  =	$this->getId($this->table)+1; //id записи
+		$this->dataDB['DT']		  =	$this->getDateTime();   //только дата
+		$this->dataDB['DA']		  =	$this->getDateTime(1);  //полная дата время
+		$this->dataDB['user']	  =	User::gi()->user;       //имя текущего пользователя
+		$this->dataDB['group']	=	User::gi()->group;      //группа текущего пользователя
+		$this->dataDB['IP']		  =	User::gi()->rip;        //ip текущего пользователя
+		$this->dataDB['active']	=	true;                   //запись активна
 		}
 
 	//уникальный UID
-	public function getUid () {
+	public function getUid() {
 		return md5(date(DATE_RFC2822).rand(5,15000));
 		}
-	
+
 	//последний ID в таблице
 	public function getId() {
 		$this->request	=	"SELECT id FROM `".$this->table."` ORDER BY id DESC LIMIT 1;";
@@ -39,12 +39,12 @@ class DLL_DB extends MySQLDB {
 		}
 
 	//текущая дата на сервере если key установлен то возвращается датавремя если нет только дата
-	public function getDateTime () {
-		if ($this->key) return date('Y-m-d');
+	public function getDateTime ($key=FALSE) {
+		if ($key) return date('Y-m-d');
 		else return date('Y-m-d H:i:s');
 		}
-	
-	//$mass - поля, которые ищем, $table - таблица базы данных, $area - поле = > значение по которому ищей 1 шт.	
+
+	//$mass - поля, которые ищем, $table - таблица базы данных, $area - поле = > значение по которому ищей 1 шт.
 	public function selectDB () {
 	if ($this->select!='all')
 		{
@@ -84,9 +84,9 @@ class DLL_DB extends MySQLDB {
 			}
 			
 		$value 	= "('".$value."')";
-		$key	= "(`".$key."`)";	
+		$key	= "(`".$key."`)";
 		
-		$this->request = "INSERT INTO `".$this->table."` ".$key." VALUE ".$value.";"; 
+		$this->request = "INSERT INTO `".$this->table."` ".$key." VALUE ".$value.";";
 		return $this->request;
 		}
 		

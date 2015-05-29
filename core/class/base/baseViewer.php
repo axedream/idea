@@ -7,8 +7,8 @@ class Viewer {
 	//$data		-	данные, массив ассоциативный хэш
 	//$key		- 	если установить TRUE возврат обратно в запрос а не в общую переменную
 	//$flagdir	-	если ture тогда читается как конечный каталог
-	// show("file_name","$data(array)",(если 1 получаем назад контент),(если 1 строим свой путь))
-	public function show($file=FALSE,$data=FALSE,$key=FALSE,$flagdir=FALSE) {	
+	// show("file_name","$data(array)",(если 1 получаем назад контент),(если 1 строим свой путь НО не дописывать php расширение оно всегда само дописывается))
+	public function show($file=FALSE,$data=FALSE,$key=FALSE,$flagdir=FALSE) {
 		if (!$file) return FALSE;
 		if (!$flagdir) $file = VIEW.$file.'.php';
 		else $file = $file.'.php';

@@ -13,13 +13,18 @@ class Post extends Singleton{
   //rege - siarch in group 'base' regexp
   public function getDataPostValid($area=FALSE,$rege=FALSE) {
 
+
   	if (!$area) {
   	  $this->error = 'Not set AREA';
       return false;
       }
 
-    if ($rege && isset($this->config['base'][$rege])) {
-      if (preg_match($this->config['base'][$rege], trim($_POST[$area]))) { $this->dataPOST = trim($_POST[$area]); return $this->dataPOST; }
+    //разворачиваем $rege
+    if (is_array($rege)) foreach ($rege as $k => $v) {}
+
+
+    if (isset($this->config[$k][$v])) {
+      if (preg_match($this->config[$k][$v], trim($_POST[$area]))) { $this->dataPOST = trim($_POST[$area]); return $this->dataPOST; }
       else return FALSE;
       }//end rege
     else return FALSE;

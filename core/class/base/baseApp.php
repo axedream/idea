@@ -1,53 +1,55 @@
 <?php
 class App extends Singleton{
 
-	public $config = "0";
+	public $config;
 	public $data;
 	private $view;
 	public $modules;
-	public $controller;					//вызванный пользовательский контроллер
-	public $action;						//вызванный пользовательское действие
-	public $ac;							//действие без префикса
+	public $controller;			      //вызванный пользовательский контроллер
+	public $action;					      //вызванный пользовательское действие
+	public $ac;							      //действие без префикса
 	public $rip;
-	
+  public $flagGlobarError;      //флаг глобальной ошибки
+  public $messageGlobalError;   //сообщение глобальной ошибки
+
 	public function __construct() {
-		if (!session_start()) exit;		//проработать вывод сообщений, что данный сайт не поддерживает работы без сессий
-		if (!isset($_SESSION['group'])) $_SESSION['group']	= 'guest';	//устанавливает по умолчанию группу guest
-		if (!isset($_SESSION['user'])) 	$_SESSION['user'] 	= 'guest';	//устанавливает по умолчанию пользователя guest		
-		$this->view = new Viewer();
+
+		$this->view   = new Viewer();
 		$this->config = include CONF.'config.php';
-		$this->rip = $_SERVER['REMOTE_ADDR'];
-		if (!isset($this->data['content'])) $this->data['content'] = ''; 
+		if (!isset($this->data['content'])) $this->data['content'] = '';
 	}
-	
+
+
 	//ключевой метод запуска движка
 	function start(){
-		Router::gi()->parse();			//парсим URL
-		$this->runUserController();		//загружаем пользовательский контроллер		
-		$this->getConf();				//получаем HEADER
+    User::gi()->start();          //процедура опознавание пользователя и запуска механизма сессий
+		Router::gi()->parse();			  //парсим URL
+		$this->runUserController();	  //загружаем пользовательский контроллер
+		$this->getConf();				      //получаем HEADER
 		$this->getPathBeforContent();	//загружаем модули
-		$this->viewFinal();				//отрисовываем финальную страницу	
-		}//END START	
+    if (User::gi()->flagSS) $this->data['content'] = User::gi()->messGE; //финальная проверка на установленные ошибки
+ 		$this->viewFinal();				    //отрисовываем финальную страницу
+		}//END START
 
 	//сборка и загрузка страницы
 	private function runUserController () {
 
-		$cn = Router::gi()->controller;	
+		$cn = Router::gi()->controller;
 		$controller	= ucfirst($cn);
-		$ac = Router::gi()->action;		
+		$ac = Router::gi()->action;
 		$action		= "action_".$ac;
 
 		if(method_exists($controller, $action)) {
 			$this->controller = $controller;
 			$this->action = $action;
 			$this->ac = $ac;
-			$controller = new $controller; 
+			$controller = new $controller;
 			$controller->$action();
-			}	
+			}
 		else{
-			$cn = Router::gi()->def_controller; 
+			$cn = Router::gi()->def_controller;
 			$controller	= ucfirst($cn);
-			$ac = Router::gi()->def_action;		
+			$ac = Router::gi()->def_action;
 			$action		= "action_".$ac;
 			if(method_exists($controller, $action)) {
 				$this->controller = $controller;
@@ -59,17 +61,17 @@ class App extends Singleton{
 			else {
 				//echo "Полная "жопа"!!!"."<br>";
 				}
-			}// END ELSE СТРАНИЦЫ ПО ДЕФОЛТУ	
+			}// END ELSE СТРАНИЦЫ ПО ДЕФОЛТУ
 		}
-	
+
 	//устанавливаем все параметры (header)
-	private function getConf () {	
+	private function getConf () {
 		$this->data['description'] 		=	$this->view->show(COREVIEWSHEADERS.'description','',1,1);			//описание
 		$this->data['keywords']			=	$this->view->show(COREVIEWSHEADERS.'keywords','',1,1);				//ключевые слова
 		$this->data['title'] 			= 	eA($this->config)->html->title;										//заголовок
-		
+
 		if (count ($this->config['html']['css'])>0) foreach ($this->config['html']['css'] as $k => $v)
-			@$this->data['css'] = $this->data['css']."\r\n".$this->view->show(COREVIEWSHEADERS.'css',$v,1,1);	
+			@$this->data['css'] = $this->data['css']."\r\n".$this->view->show(COREVIEWSHEADERS.'css',$v,1,1);
 
 		if (count($this->config['html']['js'])>0) foreach ($this->config['html']['js'] as $k => $v)
 			@$this->data['js'] = $this->data['js']."\r\n".$this->view->show(COREVIEWSHEADERS.'js',$v,1,1);
@@ -81,15 +83,15 @@ class App extends Singleton{
 		if (count( $this->config['html']['modules'])>0) {
 			foreach  ( $this->config['html']['modules'] as $k => $v ){
 				if ($v['class']) {
-					$kclass = ucfirst($k); 
+					$kclass = ucfirst($k);
 					$kclass::gi()->run();
 					}
 				if (@$v['file']) $this->data['file'] = COREVIEWS.$v['link'].'.php';
-				else $this->data[$k] = $this->view->show(COREVIEWS.$v['link'],$this->modules,1,1);				
+				else $this->data[$k] = $this->view->show(COREVIEWS.$v['link'],$this->modules,1,1);
 				}
 			}
 		}
-		
+
 	//отображаем ключевую страницу
 	private function viewFinal () {
 		foreach ($this->data as $k => $v) $$k = $v;
