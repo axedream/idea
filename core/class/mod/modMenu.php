@@ -67,15 +67,14 @@ class Menu extends Singleton{
 	}
 
 	public function run() {
-
 		$this->getAction();       //вызываем действие меню
+    $type = FALSE;
+    $user = $this->view->show(COREVIEWS.'layouts/base',['text'=>"Пользователь:&nbsp;". User::gi()->user.'&nbsp','style'=>'text_mess'],1,1);
 
-    if (User::gi()->messA) {  //определяем что писать в тектовую часть меню
-   	  App::gi()->modules['user'] = $user   = "Пользователь:&nbsp;". User::gi()->user.'&nbsp'.User::gi()->messA;
-      User::gi()->messA = FALSE;
-      }
-    else App::gi()->modules['user'] = $user   = "Пользователь:&nbsp;". User::gi()->user.'&nbsp';
+    if (User::gi()->flagGE=='baduser') $type = $this->view->show(COREVIEWS.'layouts/bad',['text'=>User::gi()->messGE,'style'=>'text_mess'],1,1);
+    if (User::gi()->flagGE=='gooduser')$type = $this->view->show(COREVIEWS.'layouts/good',['text'=>User::gi()->messGE,'style'=>'text_mess'],1,1);
 
+    App::gi()->modules['user'] = $type.$user;
 		App::gi()->modules['menu'] = $this->button; //передаем отрисованные кнопки
 		}
 }

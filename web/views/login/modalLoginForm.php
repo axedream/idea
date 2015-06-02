@@ -1,13 +1,13 @@
 <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
-		
+
 			<!-- Заголовок модального окна -->
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
 				<h4 class="modal-title" id="myModalLabel">Авторизация</h4>
 			</div>
-			
+
 			<!-- Основная часть модального окна, содержащая форму для авторизации -->
 			<div class="modal-body">
 			<!-- Форма для авторизации -->
@@ -59,25 +59,25 @@
 <script>
 $(function() {
 	$('#sendL').click(function() {
-		var formValid = true;
-		$('input').each(function() {
+		var FV = true;
+		$(document.forms[1].elements).each(function(i) {
 			var formGroup = $(this).parents('.form-group');
 			var glyphicon = formGroup.find('.form-control-feedback');
 
 			if (this.checkValidity()) {
 				formGroup.addClass('has-success').removeClass('has-error');
 				glyphicon.addClass('glyphicon-ok').removeClass('glyphicon-remove');
-				} 
-				
+				}
+
 			else {
 				formGroup.addClass('has-error').removeClass('has-success');
 				glyphicon.addClass('glyphicon-remove').removeClass('glyphicon-ok');
-				formValid = false;  
+				FV = false;
 				}
 		});
-		
-	if (formValid) {
-		$('#modalLogin').modal('hide');	
+
+	if (FV) {
+		$('#modalLogin').modal('hide');
 		$('#formSend').submit();
 		}
 	});

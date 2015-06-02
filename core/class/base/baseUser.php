@@ -23,8 +23,6 @@ class User extends Singleton {
 
   public $dataDB;         //полученные данные по пользователю из базы данных
 
-  public $messA=FALSE;    //сообщение в случае авторизации
-
   public function __construct() {
 
     $this->mess = App::gi()->config['message'];
@@ -148,23 +146,33 @@ class User extends Singleton {
           if ($this->dataDB['data']['0']['active']) {
             $_SESSION['group']  = $this->dataDB['data']['0']['userGroup'];
             $_SESSION['user']   = $this->dataDB['data']['0']['userLogin'];
-            $this->messA = $this->mess['user']['UserFine'];
             $this->setSS();
+            $this->messGE = $this->mess['user']['UserFine'];
+            $this->flagGE = 'gooduser';
             }//end active (актуальность запись)
           else {
             $this->unsetSS();
-            $this->messA = $this->mess['user']['UserNot'];
+            $this->messGE = $this->mess['user']['UserNot'];
+            $this->flagGE = 'baduser';
             }
           }//end true autorize
         else {
           $this->unsetSS();
+          $this->messGE = $this->mess['user']['UserNot'];
+          $this->flagGE = 'baduser';
           }//end false autorize
 
         }//end valid from login
+        else {
+        $this->unsetSS();
+        $this->messGE = $this->mess['user']['UserNot'];
+        $this->flagGE = 'baduser';
+        }//
+
       }//end user & group ok
     else {
-      $this->flagGE = TRUE;
-      $this->messGE = $this->mess['user']['aut'];
+      $this->messGE = $this->mess['user']['UserNot'];
+      $this->flagGE = 'baduser';
       }
     }//end logIn
 

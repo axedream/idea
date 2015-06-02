@@ -10,7 +10,8 @@ return array (
 			PLUG.'css/header.css',
 			PLUG.'css/menu.css',
 			PLUG.'css/footer.css',
-			PLUG.'css/help.css'
+			PLUG.'css/help.css',
+ 			PLUG.'css/login.css'
 			],
 	'js'			=>
 			[

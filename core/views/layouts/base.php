@@ -1,0 +1,1 @@
+<span class="label label-primary <?= $style ?>"><?= $text ?></span>
