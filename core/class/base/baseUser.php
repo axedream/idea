@@ -23,6 +23,8 @@ class User extends Singleton {
 
   public $dataDB;         //полученные данные по пользователю из базы данных
 
+  public $messA=FALSE;    //сообщение в случае авторизации
+
   public function __construct() {
 
     $this->mess = App::gi()->config['message'];
@@ -142,9 +144,17 @@ class User extends Singleton {
       $this->getUserDataDB();
       if (!$this->flagGE) {     //valid login
         if  ( md5($this->userPassword)==($this->dataDB['data']['0']['userPassword']) ) {
-          $_SESSION['group']  = $this->dataDB['data']['0']['userGroup'];
-          $_SESSION['user']   = $this->dataDB['data']['0']['userLogin'];
-          $this->setSS();
+          //проверка на активность записи (по умолчанию записи деактивированы)
+          if ($this->dataDB['data']['0']['active']) {
+            $_SESSION['group']  = $this->dataDB['data']['0']['userGroup'];
+            $_SESSION['user']   = $this->dataDB['data']['0']['userLogin'];
+            $this->messA = $this->mess['user']['UserFine'];
+            $this->setSS();
+            }//end active (актуальность запись)
+          else {
+            $this->unsetSS();
+            $this->messA = $this->mess['user']['UserNot'];
+            }
           }//end true autorize
         else {
           $this->unsetSS();

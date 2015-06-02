@@ -1,55 +1,71 @@
-<div class="modal fade" id="modalRegister" tabindex="-1" role="dialog">
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
-
-			
+		
+			<!-- Заголовок модального окна -->
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">×</button>
-				<h4 class="modal-title" id="myModalLabel">Форма запроса на регистрацию</h4>
+				<h4 class="modal-title" id="myModalRegister">Регистрация</h4>
 			</div>
 			
+			<!-- Основная часть модального окна, содержащая форму для регистрации -->
 			<div class="modal-body">
-			
-				<form class="form-horizontal">
-				
-				<div class="form-group">
-					<label class="control-label col-xs-3" for="userName">Логин:</label>
-					<div class="col-xs-9">
-						<input type="text" class="form-control" id="userName" placeholder="superuser">
-					</div>
-				</div>
+			<!-- Форма для регистрации -->
+				<form role="form" class="form-horizontal" method="post" id="formSendRegister" action="<?= $url ?>">
 
+				<!-- Блок для ввода логина -->
+				<div class="form-group has-feedback">
+					<label for="login" class="control-label col-xs-3">Логин:</label>
+					
+					<div class="col-xs-6">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							<input type="text" class="form-control" required="required" name="login" pattern="[0-9A-Za-z]{4,20}">
+						</div>
+						
+						<span class="glyphicon form-control-feedback"></span>
+					</div>
+				</div>
+				
+				<!-- Блок для ввода e-mail -->
 
-				<div class="form-group">
-					<label class="control-label col-xs-3" for="inputEmail">Email:</label>
-					<div class="col-xs-9">
-						<input type="email" class="form-control" id="inputEmail" placeholder="Email">
+				<div class="form-group has-feedback">
+					
+					<label for="email" class="control-label col-xs-3">Почта (e-mail):</label>
+					<div class="col-xs-6">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+							<input type="email" class="form-control" required="required" name="email">
+						</div>
+						
+						<span class="glyphicon form-control-feedback"></span>
+					</div>
+				</div>
+								
+				
+				
+				<!-- Блок для ввода пароля -->
+				<div class="form-group has-feedback">
+					<label for="password" class="control-label col-xs-3">Пароль:</label>
+					<div class="col-xs-6">
+						<div class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+							<input type="password" class="form-control" required="required" name="password" pattern="[0-9A-Za-z\-\_]{4,40}">
+						</div>
+						
+						<span class="glyphicon form-control-feedback"></span>
 					</div>
 				</div>
 				
-				<div class="form-group">
-					<label class="control-label col-xs-3" for="inputPassword">Пароль:</label>
-					<div class="col-xs-9">
-						<input type="password" class="form-control" id="inputPassword" placeholder="Введите пароль">
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="control-label col-xs-3" for="confirmPassword">Подтвердите пароль:</label>
-					<div class="col-xs-9">
-						<input type="password" class="form-control" id="confirmPassword" placeholder="Введите пароль ещё раз">
-					</div>
-				</div>
+
 
 			</form>
-			</div>
+			</div>				
 
-				
+			<!-- Нижняя часть модального окна -->
 			<div class="modal-footer">
-				<div class="col-xs-offset-3 col-xs-9">
-					<button id="save" type="button" class="btn btn-primary">Отправить запрос</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-				</div>
+				<button id="sendR" type="button" class="btn btn-primary">Регистрация</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>				
 			</div>
 
 		</div>
@@ -59,7 +75,7 @@
 
 <script>
 $(function() {
-	$('#save').click(function() {
+	$('#sendR').click(function() {
 		var formValid = true;
 		$('input').each(function() {
 			var formGroup = $(this).parents('.form-group');
@@ -78,9 +94,8 @@ $(function() {
 		});
 		
 	if (formValid) {
-		$('#modalRegister').modal('hide');	
-		$('#success-alert').removeClass('hidden');
-		$('#formSend').submit();
+		$('#modalRegisterForm').modal('hide');	
+		$('#formSendRegister').submit();
 		}
 	});
 });

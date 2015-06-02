@@ -47,7 +47,7 @@
 
 			<!-- Нижняя часть модального окна -->
 			<div class="modal-footer">
-				<button id="save" type="button" class="btn btn-primary">Войти</button>
+				<button id="sendL" type="button" class="btn btn-primary">Войти</button>
 				<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>				
 			</div>
 
@@ -58,7 +58,7 @@
 
 <script>
 $(function() {
-	$('#save').click(function() {
+	$('#sendL').click(function() {
 		var formValid = true;
 		$('input').each(function() {
 			var formGroup = $(this).parents('.form-group');
@@ -78,7 +78,6 @@ $(function() {
 		
 	if (formValid) {
 		$('#modalLogin').modal('hide');	
-		$('#success-alert').removeClass('hidden');
 		$('#formSend').submit();
 		}
 	});

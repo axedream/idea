@@ -1,16 +1,16 @@
 <?php
 class App extends Singleton{
 
-	public $config;
-	public $data;
+	public  $config;
+	public  $data;
 	private $view;
-	public $modules;
-	public $controller;			      //вызванный пользовательский контроллер
-	public $action;					      //вызванный пользовательское действие
-	public $ac;							      //действие без префикса
-	public $rip;
-  public $flagGlobarError;      //флаг глобальной ошибки
-  public $messageGlobalError;   //сообщение глобальной ошибки
+	public  $modules;
+	public  $controller;			      //вызванный пользовательский контроллер
+	public  $action;					      //вызванный пользовательское действие
+	public  $ac;							      //действие без префикса
+	public  $rip;
+  public  $flagGlobarError;      //флаг глобальной ошибки
+  public  $messageGlobalError;   //сообщение глобальной ошибки
 
 	public function __construct() {
 

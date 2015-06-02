@@ -20,13 +20,16 @@ class Menu extends Singleton{
 
       foreach ($this->config as $m =>$array) {
         $array['controller'] = ucfirst($array['controller']);
-        $active = ($this->controller == $array['controller']) ? 'active' : '';
-        $url    = URL.$array['controller'].'/'.$array['action'].'/'.$array['id'];
+
+
+        $active = ($this->controller == $array['controller']) ? 'active' : '';        //задаем активную кнопку
+
+        $url    = URL.$array['controller'].'/'.$array['action'].'/'.$array['id'];     //строим URL для кнопки
 
         if ($array['modal']) {
           $modal = $array['modal'];
           $url='';
-          App::gi()->data['modal'] = $this->view->show($array['modal_box'],['url'=>URL.$array['modal_url']],1);
+          App::gi()->data['modal'] = @App::gi()->data['modal'].$this->view->show($array['modal_box'],['url'=>URL.$array['modal_url']],1);
           }
         else $modal = '';
 
@@ -39,18 +42,40 @@ class Menu extends Singleton{
           $this->button['left'] = @$this->button['left'].$this->view->show($button,['active'=>$active,'name'=>$name,'url'=>$url,'glyphicon'=>$glyphicon,'modal'=>$modal],1,1);
           }//end left
 
-        //правый ряд кнопок (тут аторизации поэтому идет предварительный разбор)
+        //правый ряд кнопок (реистрация и авторизация)
         if ( $array['group'] == 'right' ) {
-          if (User::gi()->flagAut && $m=='logout') $this->button['right'] = $this->view->show($button,['active'=>$active,'name'=>$name,'url'=>$url,'glyphicon'=>$glyphicon,'modal'=>$modal],1,1);
-          if (!User::gi()->flagAut && $m=='login') $this->button['right'] = $this->view->show($button,['active'=>$active,'name'=>$name,'url'=>$url,'glyphicon'=>$glyphicon,'modal'=>$modal],1,1);
+          if (User::gi()->flagAut && $m=='logout') {
+            $this->button['right'] = $this->view->show($button,[
+              'active'=>$active,
+              'name'=>$name,
+              'url'=>$url,
+              'glyphicon'=>$glyphicon,
+              'modal'=>$modal
+              ],1,1);
+            }
+          if (!User::gi()->flagAut && ($m=='login' or $m=='register') ) {
+            $this->button['right'] = @$this->button['right'].$this->view->show($button,[
+            'active'=>$active,
+            'name'=>$name,
+            'url'=>$url,
+            'glyphicon'=>$glyphicon,
+            'modal'=>$modal
+            ],1,1);
+            }
           }//end right
         }//end foreach
 	}
 
 	public function run() {
 
-		$this->getAction();
-   	App::gi()->modules['user'] = $user   = "Пользователь:&nbsp;". User::gi()->user.'&nbsp';
-		App::gi()->modules['menu'] = $this->button;
+		$this->getAction();       //вызываем действие меню
+
+    if (User::gi()->messA) {  //определяем что писать в тектовую часть меню
+   	  App::gi()->modules['user'] = $user   = "Пользователь:&nbsp;". User::gi()->user.'&nbsp'.User::gi()->messA;
+      User::gi()->messA = FALSE;
+      }
+    else App::gi()->modules['user'] = $user   = "Пользователь:&nbsp;". User::gi()->user.'&nbsp';
+
+		App::gi()->modules['menu'] = $this->button; //передаем отрисованные кнопки
 		}
 }

@@ -26,6 +26,18 @@ return array (
 		'modal_url'		=>	false,
 		
 	],
+'register' =>
+	[
+		'controller'	=>	'register',
+		'action'		=>	'request',
+		'id'			=>	'useradd',
+		'group'			=>	'right',
+		'name'			=>	'Регистрация',
+		'glyphicon'		=>	'glyphicon-log-in',
+		'modal'			=>	'data-toggle="modal" data-target="#modalRegisterForm"',
+		'modal_box'		=>	'login/modalRegisterForm',
+		'modal_url'		=>	'login/request/register',
+	],	
 'login' =>
 	[
 		'controller'	=>	'login',
@@ -37,7 +49,7 @@ return array (
 		'modal'			=>	'data-toggle="modal" data-target="#modalLogin"',
 		'modal_box'		=>	'login/modalLoginForm',
 		'modal_url'		=>	'login/login',
-	],
+	],	
 'logout'=>
 	[
 		'controller'	=>	'login',
