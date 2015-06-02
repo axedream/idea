@@ -18,8 +18,8 @@ class DLL_DB extends MySQLDB {
 		$this->dataDB['table']	=	$this->table;           //текущая таблица
 		$this->dataDB['uid']	  =	$this->getUid();        //uid записи
 		$this->dataDB['id']		  =	$this->getId($this->table)+1; //id записи
-		$this->dataDB['DT']		  =	$this->getDateTime();   //только дата
-		$this->dataDB['DA']		  =	$this->getDateTime(1);  //полная дата время
+		$this->dataDB['DT']		  =	$this->getDateTime();   //полная дата время
+		$this->dataDB['DA']		  =	$this->getDateTime(1);  //только дата
 		$this->dataDB['user']	  =	User::gi()->user;       //имя текущего пользователя
 		$this->dataDB['group']	=	User::gi()->group;      //группа текущего пользователя
 		$this->dataDB['IP']		  =	User::gi()->rip;        //ip текущего пользователя

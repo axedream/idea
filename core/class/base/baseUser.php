@@ -74,7 +74,7 @@ class User extends Singleton {
         [
         'id'=>$helpMass['id'],                    //уникальный ID (последний ID+1)
         'uid'=>$helpMass['uid'],                  //уникальных hesh
-        'dateCreate'=>$helpMass['DA'],            //полная дата
+        'dateCreate'=>$helpMass['DT'],            //полная дата
         'userAction'=>'0',                        //по умолчанию пользователь не активный
         'userIPCreater'=>$helpMass['IP'],        //IP создателя записи
         'userLogin'=>$this->userAdd,              //логин пользователя
