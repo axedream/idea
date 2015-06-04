@@ -33,7 +33,7 @@
 					<label for="email" class="control-label col-xs-3">Почта (e-mail):</label>
 					<div class="col-xs-6">
 						<div class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+							<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
 							<input type="email" class="form-control" required="required" name="email">
 						</div>
 

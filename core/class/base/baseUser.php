@@ -15,7 +15,7 @@ class User extends Singleton {
   public $passwordAdd;    //пароль добавляемого пользователя
   public $groupAdd;       //группа добавляемого пользователя
 
-  public $flagSS;         //флаг сесси;
+  public $flagSS;         //флаг сесси
   public $flagGE;         //флаг глобальной ошибки
   public $messGE;         //глобальное сообщение
 
