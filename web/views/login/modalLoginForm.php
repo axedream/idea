@@ -60,7 +60,7 @@
 $(function() {
 	$('#sendL').click(function() {
 		var FV = true;
-		$(document.forms[1].elements).each(function(i) {
+		$('input','#modalLogin').each(function(i) {
 			var formGroup = $(this).parents('.form-group');
 			var glyphicon = formGroup.find('.form-control-feedback');
 

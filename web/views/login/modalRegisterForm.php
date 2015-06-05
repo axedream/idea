@@ -76,7 +76,7 @@
 $(function() {
 	$('#sendR').click(function() {
 		var FV = true;
-		$(document.forms[0].elements).each(function() {
+		$('input','#modalRegister').each(function() {
 
 			var formGroup = $(this).parents('.form-group');
 			var glyphicon = formGroup.find('.form-control-feedback');
