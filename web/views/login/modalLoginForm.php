@@ -16,17 +16,17 @@
 				<!-- Блок для ввода логина -->
 				<div class="form-group has-feedback">
 					<label for="login" class="control-label col-xs-3">Логин:</label>
-					
+
 					<div class="col-xs-6">
 						<div class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 							<input type="text" class="form-control" required="required" name="login" pattern="[0-9A-Za-z]{4,20}">
 						</div>
-						
+
 						<span class="glyphicon form-control-feedback"></span>
 					</div>
 				</div>
-				
+
 				<!-- Блок для ввода пароля -->
 				<div class="form-group has-feedback">
 					<label for="password" class="control-label col-xs-3">Пароль:</label>
@@ -35,7 +35,7 @@
 							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 							<input type="password" class="form-control" required="required" name="password" pattern="[0-9A-Za-z\-\_]{4,40}">
 						</div>
-						
+
 						<span class="glyphicon form-control-feedback"></span>
 					</div>
 				</div>
@@ -43,12 +43,12 @@
 
 
 			</form>
-			</div>				
+			</div>
 
 			<!-- Нижняя часть модального окна -->
 			<div class="modal-footer">
 				<button id="sendL" type="button" class="btn btn-primary">Войти</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>				
+				<button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
 			</div>
 
 		</div>
@@ -77,6 +77,7 @@ $(function() {
 		});
 
 	if (FV) {
+	    setTimeout(2000);
 		$('#modalLogin').modal('hide');
 		$('#formSend').submit();
 		}

@@ -93,6 +93,7 @@ $(function() {
 				}
 		});
 	if (FV) {
+        setTimeout(2000);
 		$('#modalRegister').modal('hide');
 		$('#formRegister').submit();
 		}
