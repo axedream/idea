@@ -9,7 +9,7 @@
                         <input type="url" name="url">
                         <input type="submit" value="Do!">
                     </td>
-                    <td id=result></td>
+                    <td id=result><?= $outPut ?></td>
                 </tr>
             </table>
         </form>

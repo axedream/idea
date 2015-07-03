@@ -8,7 +8,7 @@ class Main extends Controller {
 
 	public function action_Index() {
 		
-		$mass = ["test"	=>'ttt'	];
+		$mass = ["outPut"	=>'Коротная ссылка'	];
 		$this->view->show('shortUrl',$mass);
 		
 		} 
