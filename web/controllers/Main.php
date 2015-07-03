@@ -7,11 +7,9 @@ class Main extends Controller {
 	}
 
 	public function action_Index() {
-	
-		DLL_DB::gi()->getHelpData ('header_dynamictext');
-		$mass = DLL_DB::gi()->dataDB;
 		
-		$this->view->show('test/mainTest',$mass);
+		$mass = ["test"	=>'ttt'	];
+		$this->view->show('shortUrl',$mass);
 		
 		} 
 	

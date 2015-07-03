@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
+    <head>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<?= $description ?>
@@ -8,22 +9,17 @@
 		<?= $css ?>
 		<?= $js ?>
 		</head>
-<body>
-<div class="container boxShadowMain" id="conteiner" >
-	<div class="row">
+    </head>
+    <body>
+ 		
+		
+    <div class="content">
 		<?= $header ?>
-		<?= $menu ?>
-		
-		<div class="content">
-			<?= $content ?>
-		</div>
-		
 	
-		<?= $footer ?>
+		<?= $content ?>
 		
+		<?= $footer ?>
 	</div>
-</div>	
-</body>
+ 		
+    </body>
 </html>
-
-<?= @$modal ?>

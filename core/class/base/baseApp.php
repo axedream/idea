@@ -5,12 +5,12 @@ class App extends Singleton{
 	public  $data;
 	private $view;
 	public  $modules;
-	public  $controller;			      //вызванный пользовательский контроллер
-	public  $action;					      //вызванный пользовательское действие
-	public  $ac;							      //действие без префикса
+	public  $controller;			      	//вызванный пользовательский контроллер
+	public  $action;					  	//вызванный пользовательское действие
+	public  $ac;							//действие без префикса
 	public  $rip;
-  public  $flagGlobarError;      //флаг глобальной ошибки
-  public  $messageGlobalError;   //сообщение глобальной ошибки
+  public  $flagGlobarError;      			//флаг глобальной ошибки
+  public  $messageGlobalError;   			//сообщение глобальной ошибки
 
 	public function __construct() {
 
@@ -22,13 +22,10 @@ class App extends Singleton{
 
 	//ключевой метод запуска движка
 	function start(){
-    User::gi()->start();          //процедура опознавание пользователя и запуска механизма сессий 
-    Access::gi()->start();        //процедура установки прав пользователя на возможность запуска контроллера, действия, ID
-		Router::gi()->parse();			  //парсим URL
-		$this->runUserController();	  //загружаем пользовательский контроллер
-		$this->getConf();				      //получаем HEADER
-		$this->getPathBeforContent();	//загружаем модули
-    if (User::gi()->flagSS) $this->data['content'] = User::gi()->messGE; //финальная проверка на установленные ошибки
+		Router::gi()->parse();			  	//парсим URL
+		$this->runUserController();	  		//загружаем пользовательский контроллер
+		$this->getConf();				  	//получаем HEADER
+		$this->getPathBeforContent();		//загружаем модули
  		$this->viewFinal();				    //отрисовываем финальную страницу
 		}//END START
 

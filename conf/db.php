@@ -4,6 +4,6 @@ return array (
 	'port'		=> '3306',
 	'user' 		=> 'host1',
 	'password' 	=> 'ZXC123vbn',
-	'dbname' 	=> 'host1',
-	'pref' 		=> 'IDEa_'
+	'dbname' 	=> 'XIAG',
+	'pref' 		=> 'IDEa_XIAG_'
 );

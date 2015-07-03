@@ -1,24 +1,15 @@
 <?php
 return array (
-	'title' 		=>	'IDEa - некий сайт',
-	'keywords'		=>	'Ключевые слова',
-	'description'	=>	'Общий контекст',
+	'title' 		=>	'XIAG test task',
+	'keywords'		=>	'URL shortener 	Long URL Short URL',
+	'description'	=>	'transformation of links',
 	'css'			=> 
 			[
-			PLUG.'bootstrap/css/bootstrap.min.css',
-			PLUG.'css/style.css',
-			PLUG.'css/header.css',
-			PLUG.'css/menu.css',
-			PLUG.'css/footer.css',
-			PLUG.'css/help.css',
- 			PLUG.'css/login.css'
+			PLUG.'css/style.css'
 			],
 	'js'			=>
 			[
-			PLUG.'jquery/jquery-2.1.4.js',
-			PLUG.'bootstrap/js/bootstrap.min.js',
-			PLUG.'js/center.js',
-			PLUG.'js/higher.js'
+			PLUG.'jquery/jquery-2.1.4.js'
 			],
 	'modules'		=>	include CONF.'modules.php',
 	'menu'			=>	include CONF.'menu.php'

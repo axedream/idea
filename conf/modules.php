@@ -11,11 +11,6 @@ return array (
 				'link'		=>	'layouts/header',
 				'class'		=>	true
 			],
-	'menu'		=>
-			[
-				'link'		=>	'layouts/menu',
-				'class'		=>	true
-			],
 	'footer'	=>
 			[	
 				'link'		=>	'layouts/footer',
