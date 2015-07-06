@@ -1,1 +1,1 @@
-<meta name="keywords" content="<?= eA(App::gi()->config)->html->keywords ?>"/>
+<meta name="keywords" content="<?= App::gi()->config['html']['keywords'] ?>"/>

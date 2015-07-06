@@ -1,9 +1,9 @@
 <?php
 return array (
 	'host' 		=> 'localhost',
-	'port'		=> '3306',
-	'user' 		=> 'host1',
+	'port'		=> '3307',
+	'user' 		=> 'xiag',
 	'password' 	=> 'ZXC123vbn',
-	'dbname' 	=> 'XIAG',
-	'pref' 		=> 'IDEa_XIAG_'
+	'dbname' 	=> 'xiag',
+	'pref' 		=> 'IDEa_xiag_'
 );

@@ -9,8 +9,10 @@ class App extends Singleton{
 	public  $action;					  	//вызванный пользовательское действие
 	public  $ac;							//действие без префикса
 	public  $rip;
-  public  $flagGlobarError;      			//флаг глобальной ошибки
-  public  $messageGlobalError;   			//сообщение глобальной ошибки
+    public  $flagGlobarError;      			//флаг глобальной ошибки
+    public  $messageGlobalError;   			//сообщение глобальной ошибки
+
+    public  $notView=FALSE;                  //if not do View or othe... for example Ajax we mast set thit parametr in "TRUE"
 
 	public function __construct() {
 
@@ -22,11 +24,13 @@ class App extends Singleton{
 
 	//ключевой метод запуска движка
 	function start(){
-		Router::gi()->parse();			  	//парсим URL
-		$this->runUserController();	  		//загружаем пользовательский контроллер
-		$this->getConf();				  	//получаем HEADER
-		$this->getPathBeforContent();		//загружаем модули
- 		$this->viewFinal();				    //отрисовываем финальную страницу
+		Router::gi()->parse();			  	        //парсим URL
+		$this->runUserController();	  		        //загружаем пользовательский контроллер
+        if (!$this->notView) {
+    		$this->getConf();		                //get base param from config
+    		$this->getPathBeforContent();		    //loading modules
+     		$this->viewFinal();                     //show finish page
+            }
 		}//END START
 
 	//сборка и загрузка страницы
@@ -66,7 +70,7 @@ class App extends Singleton{
 	private function getConf () {
 		$this->data['description'] 		=	$this->view->show(COREVIEWSHEADERS.'description','',1,1);			//описание
 		$this->data['keywords']			=	$this->view->show(COREVIEWSHEADERS.'keywords','',1,1);				//ключевые слова
-		$this->data['title'] 			= 	eA($this->config)->html->title;										//заголовок
+		$this->data['title'] 			= 	$this->config['html']['title'];										//заголовок
 
 		if (count ($this->config['html']['css'])>0) foreach ($this->config['html']['css'] as $k => $v)
 			@$this->data['css'] = $this->data['css']."\r\n".$this->view->show(COREVIEWSHEADERS.'css',$v,1,1);

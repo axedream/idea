@@ -49,6 +49,6 @@ echo "</table>";
 */
 
 require_once CORECLASSAUTOLOAD.'autoloadLoader.php';	//класс автозагрузки
-require_once CORECLASSAUTOLOAD.'autoloadArray.php';		//класс обработки массивов
+//require_once CORECLASSAUTOLOAD.'autoloadArray.php';		//класс обработки массивов
 
 App::gi()->start();										//goooo!
