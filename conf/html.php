@@ -9,7 +9,8 @@ return array (
 			],
 	'js'			=>
 			[
-			PLUG.'jquery/jquery-2.1.4.js'
+			PLUG.'jquery/jquery-2.1.4.js',
+			PLUG.'js/urlShortener.js'
 			],
 	'modules'		=>	include CONF.'modules.php',
 	'menu'			=>	include CONF.'menu.php'

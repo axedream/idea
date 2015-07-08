@@ -1,4 +1,4 @@
-       <form action="javascript:alert('TODO: AJAX request')">
+       <form action="javascript:request()">
             <table>
                 <tr>
                     <th>Long URL</th>
@@ -6,8 +6,9 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="url" name="url">
+                        <input id="url" type="url" name="url">
                         <input type="submit" value="Do!">
+						<input id="key" type="hidden" value="<?= $outKey ?>">
                     </td>
                     <td id=result><?= $outPut ?></td>
                 </tr>

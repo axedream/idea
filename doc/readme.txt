@@ -1,4 +1,5 @@
 Для работы данного сервиса необходимо:
+
 1. Настроить конфигурационный файл conf/db.php
 	'host' 		=> 'Имя хоста базы данных',
 	'port'		=> 'Порт базы данных',
@@ -6,6 +7,7 @@
 	'password' 	=> 'Пароль базы данных',
 
 2. Cоздать таблицу следующего вида:
+
 CREATE TABLE xiag.xiag_sl (
   id int(11) NOT NULL AUTO_INCREMENT,
   hesh varchar(100) NOT NULL,
@@ -19,4 +21,3 @@ ENGINE = INNODB
 AUTO_INCREMENT = 1
 CHARACTER SET utf8
 COLLATE utf8_general_ci;
-

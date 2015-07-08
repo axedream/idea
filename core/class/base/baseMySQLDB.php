@@ -1,5 +1,5 @@
 <?php
-class _mysqldb {        //префикс для уникальности класса
+class MySQLDB extends Singleton {        //префикс для уникальности класса
 
     private     $dbh;
 	public      $mysqlDBHost;
@@ -18,13 +18,11 @@ class _mysqldb {        //префикс для уникальности кла�
 
 
 	public function __construct() {
-	    include 'config_db.php';    //полключаем конфиг базы данных
-
-		$this->mysqlDBHost 		= 	$db_serv;
-		$this->mysqlDBLogin		=	$db_user;
-		$this->mysqlDBPassword	=	$db_pass;
-		$this->mysqlDBPort		=	'3306';
-		$this->mysqlDBName		=	$db_base;
+		$this->mysqlDBHost 		= 	App::gi()->config['db']['host'];
+-		$this->mysqlDBLogin		=	App::gi()->config['db']['user'];
+-		$this->mysqlDBPassword	=	App::gi()->config['db']['password'];
+-		$this->mysqlDBPort		=	App::gi()->config['db']['port'];
+-		$this->mysqlDBName		=	App::gi()->config['db']['dbname'];
 		$this->mysqlDBHostname	=	$this->mysqlDBHost.":".$this->mysqlDBPort;
 	}
 
