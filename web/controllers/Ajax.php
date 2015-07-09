@@ -27,6 +27,14 @@ class Ajax extends Controller {
             //get request in module shortulr
             Shorturl::gi()->key = $this->post['key'];
             Shorturl::gi()->url = $this->post['url'];
+			//success
+			if ( !(Shorturl::gi()->setUrl ()) ) {
+				
+				}
+			//error
+			else {
+				
+				}
             }//end url right
         else echo 'NOT';
         

@@ -9,12 +9,12 @@ function request() {
 	$.ajax ({
         url: this_host,
     	type: "POST",
-        dataType: "JSON",
+        /*dataType: "JSON",*/
         data: { 'output' : output },
         cache: false,
         success:
         function(msg){
-            alert (msg);
+            $("#result").text(window.location.protocol + "//" + window.location.hostname + "/0" + msg);
             }
 		});
 

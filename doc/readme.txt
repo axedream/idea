@@ -21,3 +21,5 @@ ENGINE = INNODB
 AUTO_INCREMENT = 1
 CHARACTER SET utf8
 COLLATE utf8_general_ci;
+
+CREATE TRIGGER xiag_sl_OnInsert BEFORE INSERT ON `xiag_sl` FOR EACH ROW SET NEW.dcreate = IFNULL(NEW.dcreate, NOW());
