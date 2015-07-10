@@ -7,7 +7,7 @@ class Router extends Singleton {
 	public $def_action;			//действие загружаемое по дефолту
 	public $def_id;				//ID загружаемые по дефолту
 	public $config;				//весь конфиг
-	private $regExp;			//регулярные выражения для проверки
+	public $regExp;			//регулярные выражения для проверки
 
 
 	function __construct () {
@@ -25,10 +25,17 @@ class Router extends Singleton {
 	function parse(){
 		$routes = explode('/', $_SERVER['REQUEST_URI']);
         if ( preg_match ($this->regExp['short_ulr'], trim($routes[1] )))	{
-            //if short url input -> this function todo
-            App::gi()->notView = TRUE;
-            //run special procedure from worke short link
-            
+            Shorturl::gi()->getUrl(trim($routes[1] ));
+            if (Shorturl::gi()->output['error']=="yes") {
+                $this->controller = "Main";
+                $this->action = "index";
+                $this->id[0] = Shorturl::gi()->output['message'];
+                }
+            else {
+                //true redirect from real link
+                App::gi()->notView = TRUE;
+                header( 'Location: '.Shorturl::gi()->output['message'], true, 301 );
+                }
             } //end short url
         else {
             //if not short url then action this function

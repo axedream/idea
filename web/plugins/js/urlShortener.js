@@ -27,6 +27,7 @@ function getMessage(msg) {
         $("#result").text(short_link);
         }
     else {
+        $("#c_message").text(" ");
         $("#c_message").text(msg.message);
         }
     }

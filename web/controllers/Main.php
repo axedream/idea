@@ -1,7 +1,8 @@
 <?php
 class Main extends Controller {
 
-    
+
+
 	public function __construct () {
 		parent::__construct();
 		}
@@ -10,7 +11,7 @@ class Main extends Controller {
 		$secure 	=	MySQLDB::gi()->getDateTime();
 		//$secure = 'dsfhewuifbsmncbqweuiysaj129837';
 		$_SESSION['key'] = $secure;
-        //generate value from page
+
 		$mass = [
             "outPut"	=>  '',
             'outKey'    =>  "$secure"
@@ -18,6 +19,17 @@ class Main extends Controller {
 
         //generate body bage
 		$this->view->show('shortUrl',$mass);
-		} 
-	
-}	
+
+
+        if ( isset ($_SESSION['shortUrl']['error']) ) {
+           echo '<script>
+                    $(function () {
+                        setErrorMessage('.$_SESSION['shortUrl']['error'].')
+                        }
+                    );
+                    </script>';
+           }//end special input error from redirect
+
+		}//end Index
+
+}

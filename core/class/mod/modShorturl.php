@@ -1,25 +1,55 @@
 <?php
 class Shorturl extends Singleton{
 
-    public $key;        //key for secure
-    public $url;        //url input
-    public $input_url;  //url not validate
-    public $hesh_url;   //url if use hesh
-	public $key_ss;		//session key
-	public $ip;			//ip adreess of thit user
-	public $request;	//request from database
-	public $dateTime;	//now date
-	public $table= "xiag_sl";//base table url
-    public $output;     //output data massive
+    public $key;                //key for secure
+    public $url;                //url input
+    public $input_url;          //url not validate
+    public $hesh_url;           //url if use hesh
+	public $key_ss;		        //session key
+	public $ip;			        //ip adreess of thit user
+	public $request;	        //request from database
+	public $dateTime;	        //now date
+	public $table= "xiag_sl";   //base table url
+    public $output;             //output data massive
 
 	//$this->url_code = base_convert($this->url,10, 36);
 
 	public function __construct() {
+	    $this->setVar();
 		}
 
-	public function setUrl () {
-   		$this->setVar();
 
+    public function getUrl($gen) {
+        //validate param gen
+        if (preg_match(Router::gi()->regExp['short_ulr'], $gen)) {
+            $this->request['gen']['count'] = "SELECT COUNT(*) AS CC FROM $this->table WHERE gen = '".substr($gen,1)."'";
+    		MySQLDB::gi()->inputQuery = $this->request['gen']['count'];
+            MySQLDB::gi()->getDBData();
+            MySQLDB::gi()->inputQuery;
+		    if (MySQLDB::gi()->DataDB['data']['0']['CC']!="0") {
+                $this->request['gen']['data'] 	= "SELECT * FROM $this->table WHERE gen = '".substr($gen,1)."'";
+        		MySQLDB::gi()->inputQuery = $this->request['gen']['data'];
+                MySQLDB::gi()->getDBData();
+                MySQLDB::gi()->inputQuery;
+				$this->output['type']       =   'dataOutput_real' ;
+				$this->output['message']    =   MySQLDB::gi()->DataDB['data']['0']['real'];
+                $this->output['error']      =   'no';
+                }
+            else {
+                $this->output['type']       =   'checkGetUrlLink';
+    			$this->output['message']    =   'We regret, but this link isn\'t present in our base. You can add again.';
+                $this->output['error']      =   'yes';
+                }
+            }
+        //not valide url
+        else {
+            $this->output['type']       =   'checkValidUrl';
+			$this->output['message']    =   'You url no valid from this service.';
+            $this->output['error']      =   'yes';
+            }
+        }//end getUrl
+
+	public function setUrl () {
 		if ( $this->checkKey() ) {
 			if ( $this->checkHesh() ) {
 			        $this->output['type']       =   'dataOutput_hesh';
@@ -65,23 +95,24 @@ class Shorturl extends Singleton{
 		$this->dateTime = MySQLDB::gi()->getDateTime();
 		$this->ip = $_SERVER["REMOTE_ADDR"];
 
+
         if ( !preg_match(App::gi()->config['regexp']['uri']['full_url'],$this->input_url) ) {
 		    $this->output['type']       =   'checkUrl' ;
             $this->output['message']    =   'Not the correct address of a link is entered. Change an adrsa and repeat generation procedure.';
             $this->output['error']      =   'yes';
+            $this->input_url = "http://www.xiag.ch/testtask/";
             }
         else $this->url = $this->input_url;
 
-
-		$this->key_ss = (isset ($_SESSION['key'])) ?  $_SESSION['key'] : 0 ;
+        $this->key_ss = (isset ($_SESSION['key'])) ?  $_SESSION['key'] : "not" ;
 
 		$this->request['hesh']['data'] 	= "SELECT * FROM $this->table WHERE hesh = '".md5($this->url)."'";
 		$this->request['hesh']['count']	= "SELECT COUNT(*) AS CC FROM $this->table WHERE hesh = '".md5($this->url)."'";
 
-		$this->request['ip']['count'] 	= "SELECT COUNT(*) AS CC FROM $this->table WHERE dip = '".$this->ip."' AND TO_SECONDS(NOW()) - TO_SECONDS(dcreate) <= 120 ";
-
 		$this->request['lastDataLine']['data']  = "select * from $this->table where id = (select max(id) from $this->table)";
 		$this->request['lastDataLine']['count'] = "select COUNT(*) AS CC from $this->table where id = (select max(id) from $this->table)";
+
+        $this->request['ip']['count'] 	= "SELECT COUNT(*) AS CC FROM $this->table WHERE dip = '".$this->ip."' AND TO_SECONDS(NOW()) - TO_SECONDS(dcreate) <= 120 ";
 		}
 
 	//return last GEN (from 10)
@@ -99,10 +130,12 @@ class Shorturl extends Singleton{
 
 	//FASE if key assecced, else return FALSE
 	private function checkKey() {
+	    //echo "KEY FORM: ". $this->key . "<br>";
+        //echo "KEY SS: ". $this->key_ss . "<br>";
 		if ($this->key == $this->key_ss) return TRUE;
-		else return FALSE;	
+		else return FALSE;
 		}
-		
+
 	//return FALSE if not found hesh, TRUE if found and set $this->url['output'] fouded url
     public function checkHesh() {
 		MySQLDB::gi()->inputQuery = $this->request['hesh']['count'];

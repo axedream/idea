@@ -1,4 +1,4 @@
-body { 
+body {
 	color: #5E5E5E; 
 	font: 13px normal Arial,Helvetica,sans-serif; 
 	}
@@ -17,7 +17,7 @@ header {
 	color: #174482; 
 	font-size: 26px; 
 	background: url(/core/views/img/header_background_new.jpg) center 0 no-repeat; 
-	padding: 30px 20px 30px 100px;} 
+	padding: 30px 20px 30px 100px;}
 	
 table { 
 	background: #ECECEC; 
@@ -47,5 +47,5 @@ footer {
 	}
 
 .body_c {
-	margin-left: 100px; 
+	margin-left: 50px; 
 	}
