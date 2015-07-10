@@ -1,9 +1,7 @@
         <footer>
 			<pre>
-				<div class='body_c'>
-					<div>Enter long URL				</div>
-					<div>press Do					</div>	
-					<div>copy the get received URL	</div>	
+				<div id='c_header' class='body_c'>
+					<div id='c_message'>Enter long URL<br>press Do<br>copy the get received URL</div>
 				</div>
 			</pre>
         </footer>

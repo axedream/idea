@@ -1,9 +1,8 @@
 <?php
 class Ajax extends Controller {
 
-    private $errors;            //variable from error in this controllers
-    public  $data;              //date from this modules
-    public  $post=FALSE;              //data post
+    public  $post=FALSE;        //data post
+    public  $output;            //return data
 
 	public function __construct () {
 	    parent::__construct();
@@ -18,25 +17,18 @@ class Ajax extends Controller {
                 case 'shorturl' : $this->_shorturl(); break;
                 }//end switch
             }
-        else echo 'NOT';
+        //encode data
+        $this->output = json_encode($this->output);
+        echo $this->output;
 		}
 
 	//get long url and generate short url
 	public function _shorturl() {
-        if (preg_match(App::gi()->config['regexp']['uri']['full_url'],$this->post['url']) ) {
-            //get request in module shortulr
+	    if ($this->post['action'] == 'set') {
             Shorturl::gi()->key = $this->post['key'];
-            Shorturl::gi()->url = $this->post['url'];
-			//success
-			if ( !(Shorturl::gi()->setUrl ()) ) {
-				
-				}
-			//error
-			else {
-				
-				}
-            }//end url right
-        else echo 'NOT';
-        
-        }//geting url
+            Shorturl::gi()->url = trim($this->post['url']);
+			Shorturl::gi()->setUrl ();
+            $this->output = Shorturl::gi()->output;
+            }//end ACTION SET
+        }//end function _shorturl
 }//end Ajax

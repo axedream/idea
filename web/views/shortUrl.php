@@ -1,4 +1,4 @@
-       <form action="javascript:request()">
+       <form action="javascript:request_set()">
             <table>
                 <tr>
                     <th>Long URL</th>

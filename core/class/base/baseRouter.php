@@ -26,7 +26,9 @@ class Router extends Singleton {
 		$routes = explode('/', $_SERVER['REQUEST_URI']);
         if ( preg_match ($this->regExp['short_ulr'], trim($routes[1] )))	{
             //if short url input -> this function todo
-
+            App::gi()->notView = TRUE;
+            //run special procedure from worke short link
+            
             } //end short url
         else {
             //if not short url then action this function
