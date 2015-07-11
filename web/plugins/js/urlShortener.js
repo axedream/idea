@@ -15,16 +15,12 @@ function request_set() {
         success:
         function(msg){ getMessage(msg); }
 		});
-
     }
 
 function getMessage(msg) {
     $("#url").text(" ");
     $("#message").text(" ");
-
     if (msg.error == "no") msg.url = window.location.protocol + "//" + window.location.hostname + "/0" + msg.url;
-
     $("#message").text(msg.message);
     $("#url").text(msg.url);
-
     }

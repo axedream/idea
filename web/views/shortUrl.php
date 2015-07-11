@@ -13,3 +13,10 @@
                 </tr>
             </table>
         </form>
+        <footer>
+			<pre>
+				<div id='c_header' class='body_c'>
+					<div id='message'><?= $message ?></div>
+				</div>
+			</pre>
+        </footer>

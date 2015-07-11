@@ -23,7 +23,7 @@ table {
 	background: #ECECEC; 
 	border: 1px solid silver; 
 	border-width: 1px 0; 
-	padding: 30px 20px 30px 100px;; color: #5E5E5E; 
+	padding: 30px 20px 30px 100px;; color: #5E5E5E;
 	width: 100%; 
 	text-align: left;
 	} 
@@ -47,5 +47,8 @@ footer {
 	}
 
 .body_c {
-	margin-left: 50px; 
+	margin-left: 50px;
 	}
+#c_header {
+    padding-bottom: 50px;
+}

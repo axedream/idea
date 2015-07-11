@@ -14,26 +14,22 @@ class Shorturl extends Singleton{
     	}
 
 
-    public function getUrl($gen) {
-        //validate param gen
-        if (preg_match(Router::gi()->regExp['short_ulr'], $gen)) {
-            $this->request['gen']['count'] = "SELECT COUNT(*) AS CC FROM $this->table WHERE gen = '".substr($gen,1)."'";
-    		MySQLDB::gi()->inputQuery = $this->request['gen']['count'];
-            MySQLDB::gi()->getDBData();
-            MySQLDB::gi()->inputQuery;
+    public function getUrl($url) {
+        if ( $this->checkUrl($url) ) {
+            $this->setVar();
+            MySQLDB::gi()->getDBData($this->request['count']['gen']);
 		    if (MySQLDB::gi()->DataDB['data']['0']['CC']!="0") {
-                $this->request['gen']['data'] 	= "SELECT * FROM $this->table WHERE gen = '".substr($gen,1)."'";
-        		MySQLDB::gi()->inputQuery = $this->request['gen']['data'];
-                MySQLDB::gi()->getDBData();
-                MySQLDB::gi()->inputQuery;
+                MySQLDB::gi()->getDBData($this->request['data']['gen']);
 				$this->output['type']       =   'dataOutput_real' ;
-				$this->output['message']    =   MySQLDB::gi()->DataDB['data']['0']['real'];
+                $this->output['message']    =   'Get URL is correct';
+				$this->output['gen']        =   MySQLDB::gi()->DataDB['data']['0']['real'];
                 $this->output['error']      =   'no';
                 }
             else {
                 $this->output['type']       =   'checkGetUrlLink';
-    			$this->output['message']    =   'We regret, but this link isn\'t present in our base. You can add again.';
+    			$this->output['message']    =   'We ShortURL link isn\'t present in our base. You can add again.';
                 $this->output['error']      =   'yes';
+                $this->output['gen']        =   '-';
                 }
             }
         //not valide url
@@ -41,6 +37,7 @@ class Shorturl extends Singleton{
             $this->output['type']       =   'checkValidUrl';
 			$this->output['message']    =   'You url no valid from this service.';
             $this->output['error']      =   'yes';
+            $this->output['gen']        =   '-';
             }
         }//end getUrl
 
@@ -67,9 +64,9 @@ class Shorturl extends Singleton{
 
                     MySQLDB::gi()->inputTable = $this->table;
                     MySQLDB::gi()->inputData = [
-                        'hesh'  => md5($this->url),
+                        'hesh'  => md5($this->input['url']),
                         'gen'   => $gen,
-                        'real'  => $this->url,
+                        'real'  => $this->input['url'],
                         'dip'   => $this->ip
                         ];
                     MySQLDB::gi()->insertDBData();
@@ -98,11 +95,13 @@ class Shorturl extends Singleton{
                 'count'     =>  [
                         'hesh'              =>  "SELECT COUNT(*) AS CC FROM $this->table WHERE hesh = '".md5($this->input['url'])."'",
                         'lastDataLine'      =>  "SELECT COUNT(*) AS CC from $this->table where id = (select max(id) from $this->table)",
-                        'ip'                =>  "SELECT COUNT(*) AS CC FROM $this->table WHERE dip = '".$this->ip."' AND TO_SECONDS(NOW()) - TO_SECONDS(dcreate) <= 120 "
+                        'ip'                =>  "SELECT COUNT(*) AS CC FROM $this->table WHERE dip = '".$this->ip."' AND TO_SECONDS(NOW()) - TO_SECONDS(dcreate) <= 120 ",
+                        'gen'               =>  "SELECT COUNT(*) AS CC FROM $this->table WHERE gen = '".substr($this->input['url'],1)."'"
                     ],
                 'data'      =>  [
                         'hesh'              =>  "SELECT * FROM $this->table WHERE hesh = '".md5($this->input['url'])."'",
-                        'lastDataLine'      =>  "select * from $this->table where id = (select max(id) from $this->table)"
+                        'lastDataLine'      =>  "select * from $this->table where id = (select max(id) from $this->table)",
+                        'gen'               =>  "SELECT * FROM $this->table WHERE gen = '".substr($this->input['url'],1)."'"
                 ]
             ];
 
