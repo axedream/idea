@@ -1,7 +1,12 @@
 <?php
 return array (
-	'user'	=>
+	'user'		=>
 			[
 				'duplicate'		=>	'',
-			],    
+			],
+	'shorturl'	=>
+			[
+				'dataOutput_hesh'	=>	'This URL was already earlier generated',
+				
+			]
 	);

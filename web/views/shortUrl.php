@@ -6,11 +6,10 @@
                 </tr>
                 <tr>
                     <td>
-                        <input id="url" type="url" name="url">
+                        <input id="input_url" type="url" name="url">
                         <input type="submit" value="Do!">
-						<input id="key" type="hidden" value="<?= $outKey ?>">
                     </td>
-                    <td id=result><?= $outPut ?></td>
+                    <td id="url"></td>
                 </tr>
             </table>
         </form>

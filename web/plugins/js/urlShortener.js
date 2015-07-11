@@ -2,8 +2,7 @@ function request_set() {
     var this_host = window.location.protocol + "//" + window.location.hostname + "/ajax";
     var ob = new Object();
     ob.controller = "shorturl";
-    ob.url = $('#url').val();
-    ob.key = $('#key').val();
+    ob.url = $('#input_url').val();
     ob.action   = 'set';
     output = JSON.stringify(ob);
 
@@ -20,14 +19,12 @@ function request_set() {
     }
 
 function getMessage(msg) {
-    $("#result").text(" ");
-    if (msg.error == "no") {
-        $("#c_message").text("Copy the link from the field \"Short URL\" and insert in to the need block.");
-        short_link = window.location.protocol + "//" + window.location.hostname + "/0" + msg.message;
-        $("#result").text(short_link);
-        }
-    else {
-        $("#c_message").text(" ");
-        $("#c_message").text(msg.message);
-        }
+    $("#url").text(" ");
+    $("#message").text(" ");
+
+    if (msg.error == "no") msg.url = window.location.protocol + "//" + window.location.hostname + "/0" + msg.url;
+
+    $("#message").text(msg.message);
+    $("#url").text(msg.url);
+
     }

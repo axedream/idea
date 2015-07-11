@@ -25,10 +25,7 @@ class Ajax extends Controller {
 	//get long url and generate short url
 	public function _shorturl() {
 	    if ($this->post['action'] == 'set') {
-            Shorturl::gi()->key = $this->post['key'];
-            Shorturl::gi()->url = trim($this->post['url']);
-			Shorturl::gi()->setUrl ();
-            $this->output = Shorturl::gi()->output;
+			$this->output = Shorturl::gi()->setUrl ($this->post['url']);
             }//end ACTION SET
         }//end function _shorturl
 }//end Ajax
