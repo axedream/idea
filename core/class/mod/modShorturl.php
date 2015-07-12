@@ -11,6 +11,7 @@ class Shorturl extends Singleton{
 
 	public function __construct() {
 		$this->ip = $_SERVER["REMOTE_ADDR"];
+        $this->config = App::gi()->config['message']['shorturl'];
     	}
 
 
@@ -21,13 +22,13 @@ class Shorturl extends Singleton{
 		    if (MySQLDB::gi()->DataDB['data']['0']['CC']!="0") {
                 MySQLDB::gi()->getDBData($this->request['data']['gen']);
 				$this->output['type']       =   'dataOutput_real' ;
-                $this->output['message']    =   'Get URL is correct';
+                $this->output['message']    =   $this->config['dataOutput_real'];
 				$this->output['gen']        =   MySQLDB::gi()->DataDB['data']['0']['real'];
                 $this->output['error']      =   'no';
                 }
             else {
                 $this->output['type']       =   'checkGetUrlLink';
-    			$this->output['message']    =   'We ShortURL link isn\'t present in our base. You can add again.';
+    			$this->output['message']    =   $this->config['checkGetUrlLink'];
                 $this->output['error']      =   'yes';
                 $this->output['gen']        =   '-';
                 }
@@ -35,7 +36,7 @@ class Shorturl extends Singleton{
         //not valide url
         else {
             $this->output['type']       =   'checkValidUrl';
-			$this->output['message']    =   'You url no valid from this service.';
+			$this->output['message']    =   $this->config['checkValidUrl'];
             $this->output['error']      =   'yes';
             $this->output['gen']        =   '-';
             }
@@ -46,13 +47,13 @@ class Shorturl extends Singleton{
             $this->setVar();
             if ( $this->checkHesh() ) {
                 $this->output['type']       =   'dataOutput_hesh';
-                $this->output['message']    =   'This URL was already earlier generated';
+                $this->output['message']    =   $this->config['dataOutput_hesh'];
                 $this->output['error']      =   'no';
                 }
             else {
                 if ($this->checkDateIp()) {
                     $this->output['type']       =   'checkDateIp';
-                    $this->output['message']    =   'You too often try to generate the link. Admissible interval 2 minutes! Wait 2 minutes and try again.';
+                    $this->output['message']    =   $this->config['checkDateIp'];
                     $this->output['error']      =   'yes';
                     $this->output['url']        =   '-';
                     } //need make function -> error (in the future)
@@ -72,7 +73,7 @@ class Shorturl extends Singleton{
                     MySQLDB::gi()->insertDBData();
 
                 	$this->output['type']       =   'dataOutput_gen' ;
-                	$this->output['message']    =   'This ShortURL is successfully generated' ;
+                	$this->output['message']    =   $this->config['dataOutput_gen'];
                     $this->output['error']      =   'no';
                     $this->output['url']        =   $gen;
                 	}
@@ -80,7 +81,7 @@ class Shorturl extends Singleton{
             }//end checkURL
         else {
             $this->output['type']       =   'checkUrl' ;
-            $this->output['message']    =   'Not the correct address of a link is entered. Change an adrsa and repeat generation procedure.';
+            $this->output['message']    =   $this->config['checkUrl'];
             $this->output['error']      =   'yes';
             $this->output['url']        =   '-';
             }
