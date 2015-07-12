@@ -6,7 +6,8 @@ ini_set("display_errors",1);
 $server = $_SERVER['SERVER_ADDR'];
 date_default_timezone_set('Asia/Novosibirsk');
 
-if ($server=="192.168.54.111")	define('URL', 'http://host-1.ru/');	//реальный тестовый хост	
+if ($server==gethostbyname($_SERVER['SERVER_NAME']))	
+	define('URL', 'http://'.$_SERVER['SERVER_NAME'].'/');	//реальный тестовый хост	
 if ($server=="127.0.0.1")		define('URL', 'http://localhost/');	//URL
 
 $input = str_replace('\\','/',__DIR__);

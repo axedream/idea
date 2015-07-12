@@ -23,7 +23,7 @@ class MySQLDB extends Singleton {        //префикс для уникаль�
 -		$this->mysqlDBPassword	=	App::gi()->config['db']['password'];
 -		$this->mysqlDBPort		=	App::gi()->config['db']['port'];
 -		$this->mysqlDBName		=	App::gi()->config['db']['dbname'];
-		$this->mysqlDBHostname	=	$this->mysqlDBHost.":".$this->mysqlDBPort;
+		$this->mysqlDBHostname	=	$this->mysqlDBHost.$this->mysqlDBPort;
 	}
 
 
