@@ -66,7 +66,7 @@ class Core extends Singleton {
         else {                                                      //если метода  не существует отрабатываем ситуацию (запускаем дефолтный контроллер,метод)
             $controller	= $this->config['default']['contorller'];   //дефолтный контроллер
             $action     = $this->config['default']['action'];       //дефолтный метод
-            $controller = new $controller                           //дефолтный объект
+            $controller = new $controller;                          //дефолтный объект
             $controller->$action($this->router['id']);              //выполняем дефолтный метод, дефолтного класса с заданным id
             }
         }
