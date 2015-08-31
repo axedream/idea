@@ -1,1 +1,0 @@
-<meta name="description" content="<?= eA(App::gi()->config)->html->description ?>" />
