@@ -61,13 +61,25 @@ class Core extends Singleton {
         $action     = mb_strtolower($this->router['action']);       //преобразуем все символы в нижний регистр
         if(method_exists($controller, $action)) {                   //проверяем существование контроллера и метода в нем
 			$controller = new $controller;                          //создаем объект
-			$controller->$action($this->router['id']);              //выполняем метод
+			$controller->$action($this->router['id']);              //выполняем метод переданный пользователем
             }
-        else {                                                      //если метода  не существует отрабатываем ситуацию (запускаем дефолтный контроллер,метод)
-            $controller	= $this->config['default']['contorller'];   //дефолтный контроллер
+        else {                                                      //если метода  не существует оставляем тот же контроллер но пробуем дефолтный метод
             $action     = $this->config['default']['action'];       //дефолтный метод
-            $controller = new $controller;                          //дефолтный объект
-            $controller->$action($this->router['id']);              //выполняем дефолтный метод, дефолтного класса с заданным id
+            if(method_exists($controller, $action)) {
+                $controller = new $controller;                      //дефолтный объект
+                $controller->$action($this->router['id']);          //выполняем дефолтный метод, дефолтного класса с заданным id
+                }
+            else {                                                  //если дефолтный метод не проходим задаем дефолтный контроллер (он всегда существует так как загружается из модулей приложения)
+                $controller	= $this->config['default']['contorller'];   //дефолтный контроллер
+                $action     = $this->config['default']['action'];       //дефолтный метод
+                if(method_exists($controller, $action)) {           //если и дефолтынй контроллер/метод не найден выдаем сообщение об ошибке
+                    $controller = new $controller;
+                    $controller->$action($this->router['id']);
+                    }
+                else {
+                    die ($this->config['message']['error']['core']['defaultController']);
+                    }
+                }
             }
         }
 
