@@ -93,7 +93,7 @@ class Core extends Singleton {
         }//end fucntio run()
 
     //функция тестирования различных методов (с отключенным дефолтным отображением)
-    public function test($key) {
+    public function test($key=FALSE) {
         if ($key=="routing") {
             $this->readConfig();
             $this->setDefaultValue(TRUE,TRUE,TRUE);
