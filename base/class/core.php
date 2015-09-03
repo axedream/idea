@@ -15,10 +15,11 @@ class Core extends Singleton {
         $this->config = include CONF.'config.php';
         }
 
-    //метод получение параметро запроса пользователя
+    //метод получение параметро запроса пользователя и остальных данных
     public function getParamRequest() {
-        $this->router['all']  = trim($_SERVER['REQUEST_URI']);    //строка после хоста
-        $this->router['host'] = trim($_SERVER["HTTP_HOST"]);      //строка до параметров, напранная польхователем
+        $this->router['all']    = trim($_SERVER['REQUEST_URI']);            //строка после хоста
+        $this->router['host']   = trim($_SERVER["HTTP_HOST"]);              //строка до параметров, напранная польхователем
+        $this->router['ip']     = trim($_SERVER["REMOTE_ADDR"]);            //ip адресс пользователя
         }
 
     //метод парсинга запроса пользователя (предполагаем что максимальная длинна запроса /controller/action/id
@@ -89,7 +90,7 @@ class Core extends Singleton {
         $this->setDefaultValue(TRUE,TRUE,TRUE);         //устанавливаем значения конроллера, действия, ИД по умолчанию
         $this->getParamRequest();                       //получаем параметры запроса пользователя
         $this->parserParamRequest();                    //парсим параметры запроса пользователя
-        $this->execConActId();
+        $this->execConActId();                          //попытка выполнения контроллера, действия пользователя, либо дефолтного контроллера
         }//end fucntio run()
 
     //функция тестирования различных методов (с отключенным дефолтным отображением)
@@ -106,6 +107,5 @@ class Core extends Singleton {
             var_dump($this->router);
             echo "</pre>";
             }//end key=ROUTING
-
         }//end function test()
     }
