@@ -1,5 +1,4 @@
 <?php
-namespace idea;
 //--файл загрузки директорий--//
 
 const CONF          =   'config/';              //файлы конфигураций

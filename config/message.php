@@ -1,5 +1,4 @@
 <?php
-namespace idea;
 //--базовые сообщения (в том числе об ошибках)--//
 
 return array(

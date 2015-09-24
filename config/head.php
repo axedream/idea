@@ -1,5 +1,4 @@
 <?php
-namespace idea;
 //--теги заголовка страницы--//
 
 return array(

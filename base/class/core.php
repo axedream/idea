@@ -1,5 +1,4 @@
 <?php
-namespace idea;
 //--базовый класс для работы и взаимодействия объектов приложения--//
 
 class Core extends Singleton {
