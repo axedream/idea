@@ -1,14 +1,14 @@
 <?php
-//--ôàéë àâòîçàãðóçêè êëàññîâ--//
+//--Ñ„Ð°Ð¹Ð» Ð°Ð²Ñ‚Ð¾Ð·Ð°Ð³Ñ€ÑƒÐ·ÐºÐ¸ ÐºÐ»Ð°ÑÑÐ¾Ð²--//
 
 
-//áàçîâûå êëàññû ÿäðà
+//Ð±Ð°Ð·Ð¾Ð²Ñ‹Ðµ ÐºÐ»Ð°ÑÑÑ‹ ÑÐ´Ñ€Ð°
 function base_autoload($class_name) {
 	$file = BCLASS .$class_name.'.php';
 	if( file_exists($file) == false ) return false;
 	require_once ($file);
 }
 
-
+//Ð±Ð°Ð·Ð¾Ð²Ñ‹Ð¹ ÐºÐ»Ð°ÑÑ
 spl_autoload_register('base_autoload');
 
