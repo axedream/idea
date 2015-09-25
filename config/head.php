@@ -4,9 +4,11 @@
 return array(
     "ext"       =>      [
                         "js"        =>      [
+                                            /*
                                             "bootstrap"         =>      [
                                                                         "directory"         =>          "bootstrap/js/bootstrap.min.js",
                                                                         ],
+                                            */
                                             "jquery"            =>      [
                                                                         "directory"         =>          "jquery/jquery-2.1.4.min.js",
                                                                         ],
@@ -28,6 +30,18 @@ return array(
                                                                                                         ],
                                                                         ],
                                             ],
+                        ],
+
+    "description"   =>  [
+                        'text'      =>      'Описание',
+                        ],
+
+    "keywords"      =>  [
+                        'text'      =>      'Ключевые слова',
+                        ],
+
+    "title"         =>  [
+                        'text'      =>      'Заголовок сайта',
                         ],
 
 );

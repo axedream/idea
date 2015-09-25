@@ -9,6 +9,7 @@ function base_autoload($class_name) {
 	require_once ($file);
 }
 
+
 //базовый класс
 spl_autoload_register('base_autoload');
 
