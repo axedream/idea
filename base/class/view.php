@@ -5,6 +5,15 @@ class view extends Singleton {
     public $view;      //массив общего отображения
     public $out;       //полное построение html кода
 
+
+    //инициализация шаблонна страницы (можно и не делать а сделать это с своем контроллере)
+    public function pageDefault () {
+        $this->setHeader();
+        $this->setUpBody();
+        $this->setDownBody();
+        $this->setHtmlHead();
+        }//end pageDefault
+
     public function setHtmlHead () {
         $this->view['html']['head'] = '<!DOCTYPE html>';
         $this->view['html']['down'] = '</html>';
