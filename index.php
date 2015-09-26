@@ -18,6 +18,9 @@ echo "<pre>";
 var_dump(Core::gi()->config);
 echo "<br>";
 */
+$db = new safemysql(Core::gi()->config['mysqldb']['system']);
+$sql  = "INSERT INTO test SET name=?s, value = ?s";
+$db->query($sql,"test_name","test_value");
 
 echo View::gi()->view['body']['down'];
 ?>

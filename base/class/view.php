@@ -16,6 +16,7 @@ class view extends Singleton {
         $this->view['header']['charset']        = '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
         $this->view['header']['description']    = '<meta name="description" content="'.Core::gi()->config['head']['description']['text'].'"/>';
         $this->view['header']['keywords']       = '<meta name="keywords" content="'.Core::gi()->config['head']['keywords']['text'].'"/>';
+        $this->view['header']['ico']            = '<link type="image/gif" rel="shortcut icon" href="favicon.gif" />';
         $this->view['header']['title']          = '<title>'.Core::gi()->config['head']['title']['text'].'</title>';
         $this->view['header']['down']           = '</head>';
 
@@ -50,6 +51,7 @@ class view extends Singleton {
         //построение полного header
         $this->view['headerBuild'] = ''.
             $this->view['header']['up'].
+            $this->view['header']['ico'].
             $this->view['header']['charset'].
             $this->view['header']['description'].
             $this->view['header']['keywords'].
