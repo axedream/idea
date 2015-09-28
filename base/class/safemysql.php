@@ -66,7 +66,7 @@
  * 
  */
 
-class safemysql
+class Safemysql
 {
 
 	private $conn;

@@ -1,6 +1,6 @@
 <?php
 //общий класса для формирования отображени
-class view extends Singleton {
+class View extends Singleton {
 
     public $view;      //массив общего отображения
     public $out;       //полное построение html кода
