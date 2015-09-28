@@ -14,6 +14,7 @@ function base_autoload($class_name) {
 function user_autoload($class_name) {
     $class_name = mb_strtolower($class_name);
 	$file = UCLASS .$class_name.'.php';
+    //echo "File: ".$file."<br>";
 	if( file_exists($file) == false ) return false;
 	require_once ($file);
 }

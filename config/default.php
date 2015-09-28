@@ -2,7 +2,7 @@
 //--дефолтные настройки для контроллеров, отображений...--//
 
 return array(
-    'contorller'    =>      'main',
+    'contorller'    =>      'Main',
     'action'        =>      'index',
     'id'            =>      FALSE,
 );

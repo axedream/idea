@@ -77,6 +77,13 @@ class Core extends Singleton {
                     $controller->$action($this->router['id']);
                     }
                 else {
+                    /*
+                    echo "
+                        Попытка загрузить контроллер: ".$controller."<br>
+                        И метод: ".$action."<br>
+                        Fatal error<br>
+                    ";
+                    */
                     die ($this->config['message']['error']['core']['defaultController']);
                     }
                 }
@@ -89,7 +96,7 @@ class Core extends Singleton {
         $this->setDefaultValue(TRUE,TRUE,TRUE);         //устанавливаем значения конроллера, действия, ИД по умолчанию
         $this->getParamRequest();                       //получаем параметры запроса пользователя
         $this->parserParamRequest();                    //парсим параметры запроса пользователя
-        //$this->execConActId();                          //попытка выполнения контроллера, действия пользователя, либо дефолтного контроллера
+        $this->execConActId();                          //попытка выполнения контроллера, действия пользователя, либо дефолтного контроллера
         }//end fucntio run()
 
     //функция тестирования различных методов (с отключенным дефолтным отображением)
