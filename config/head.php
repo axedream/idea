@@ -32,6 +32,15 @@ return array(
                                             ],
                         ],
 
+    "local"     =>      [
+                        "css"        =>      [
+                                            "shop-base.css",
+                                            ],
+                        "js"        =>      [
+                                            "shop-base.js",
+                                            ],
+                        ],
+
     "description"   =>  [
                         'text'      =>      'Описание',
                         ],

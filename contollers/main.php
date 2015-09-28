@@ -5,7 +5,9 @@ class Main {
 		}
 
 	public function index() {
-	    echo "Работает дефолтный метод контроллера";
+	    //отображаем страницу шаблона по умолчанию
+        View::gi()->pageDefault();
+        View::gi()->uView('layout');
 		}//end Index
 
 

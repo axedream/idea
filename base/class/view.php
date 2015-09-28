@@ -5,6 +5,14 @@ class View extends Singleton {
     public $view;      //массив общего отображения
     public $out;       //полное построение html кода
 
+    //отобразить страницу
+    public function uView($file) {
+        //проверяем на существование файл
+        $file = mb_strtolower($file);
+	    $file = UVIEW .$file.'.php';
+        if( file_exists($file) == false ) return false;
+	    require_once ($file);
+        }//end uView
 
     //инициализация шаблонна страницы (можно и не делать а сделать это с своем контроллере)
     public function pageDefault () {
@@ -35,7 +43,7 @@ class View extends Singleton {
             if (is_array($ext['directory'])) {
                 for ($i=0;$i<count($ext['directory']);$i++)
                     $this->view['header']['css'] .= '<link rel="stylesheet" type="text/css" href='.MEXT.$ext['directory'][$i].'>';
-                }
+                    }
             //если один css то
             else {
                 $this->view['header']['css'] .= '<link rel="stylesheet" type="text/css" href='.MEXT.$ext['directory'].'>';
@@ -55,6 +63,21 @@ class View extends Singleton {
                 $this->view['header']['js'] .= '<script type="text/javascript" src="'.MEXT.$ext['directory'].'"></script>';
                 }
             }//end nameCSS
+
+        //css - локальные модули
+        if (isset(Core::gi()->config['head']['local']['css'])) {
+            for ($i=0;$i<count(Core::gi()->config['head']['local']['css']);$i++) {
+                $this->view['header']['css'] .= '<link rel="stylesheet" type="text/css" href='.UVIEW.'css/'.Core::gi()->config['head']['local']['css'][$i].'>';
+                }
+            }//end CSS
+
+        //js - локальные модули
+        if (isset(Core::gi()->config['head']['local']['js'])) {
+            for ($i=0;$i<count(Core::gi()->config['head']['local']['js']);$i++) {
+                $this->view['header']['js'] .= '<script type="text/javascript" src="'.UVIEW.'css/'.Core::gi()->config['head']['local']['js'][$i].'"></script>';
+                }
+            }//end JS
+
 
 
         //построение полного header
