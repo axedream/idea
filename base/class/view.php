@@ -2,8 +2,8 @@
 //общий класса для формирования отображени
 class View extends Singleton {
 
-    public $view;      //массив общего отображения
-    public $out;       //полное построение html кода
+    public $view;           //массив общего отображения
+    public $out;            //полное построение html кода
 
     //отобразить страницу
     public function uView($file) {
@@ -20,7 +20,6 @@ class View extends Singleton {
         $this->setUpBody();
         $this->setDownBody();
         $this->setHtmlHead();
-        $this->setContentIndex();
         }//end pageDefault
 
     public function setHtmlHead () {
@@ -28,10 +27,6 @@ class View extends Singleton {
         $this->view['html']['down'] = '</html>';
         }//end setHtmlHead
 
-
-    public function setContentIndex () {
-        $this->view['content']['body'] = '';
-    }//end setContentIndex;
 
     //поспроение заголовка шаблонной страницы
     public function setHeader () {
@@ -97,6 +92,7 @@ class View extends Singleton {
             }//end JS
 
         //построение полного header
+        /*
         $this->view['headerBuild'] = ''.
             $this->view['header']['up'].
             $this->view['header']['ico'].
@@ -107,6 +103,7 @@ class View extends Singleton {
             $this->view['header']['css'].
             $this->view['header']['js'].
             $this->view['header']['down'];
+        */
 
         }//end setHeader
 
@@ -119,6 +116,40 @@ class View extends Singleton {
     public function setDownBody () {
         $this->view['body']['down'] = "</body>";
         }
+
+    //общее отображение данных
+	//$file		-	переданное начало файла отображения
+	//$data		-	данные, массив ассоциативный хэш
+	//$key		- 	если установить TRUE возврат обратно в запрос а не в общую переменную
+	//show("file_name","$data(array)",(если 1 получаем назад переменную))
+	public function show($file=FALSE,$data=FALSE,$key=FALSE) {
+
+        //если файл не задан, возвращаем FALSE
+		if (!$file) return FALSE;
+
+        //если директория заданная то берем заданную директорию
+		else $file = UVIEW.$file.'.php';
+
+        //буферизируем вывод
+		ob_start();
+
+		if (!isset($file)) return FALSE;
+		else {
+			if ($data) if(is_array($data)) if (count($data)>0) foreach ($data as $k => $v) $$k = $v;
+			if( file_exists($file) == FALSE ) return FALSE;
+			else{
+				include $file;
+				if ($key) $out = ob_get_contents();
+				else $this->view['content'] = $this->view['content']."\r\n".ob_get_contents();
+				ob_clean();
+				ob_end_flush();
+				if (!$key) return TRUE;
+				else return $out;
+				}
+			}//end issetFILE
+		return FALSE;
+		}//end SHOW
+
 
 
 }//end class view

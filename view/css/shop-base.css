@@ -64,3 +64,18 @@
 .headerM {
     padding-left: 15px;
 }
+
+/*подвал*/
+.footer {
+    background-color: #000000;
+    text-align: center;
+    height: 40px;
+    text-shadow: 2px 4px 9px #FFFEE5;
+    font-weight: bold;
+    color: #FFFFFF;
+    font-size: 15px;
+}
+/*текст подвала*/
+.textFooter {
+    padding-top: 8px;
+}
