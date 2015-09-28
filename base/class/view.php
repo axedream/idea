@@ -20,12 +20,18 @@ class View extends Singleton {
         $this->setUpBody();
         $this->setDownBody();
         $this->setHtmlHead();
+        $this->setContentIndex();
         }//end pageDefault
 
     public function setHtmlHead () {
         $this->view['html']['head'] = '<!DOCTYPE html>';
         $this->view['html']['down'] = '</html>';
         }//end setHtmlHead
+
+
+    public function setContentIndex () {
+        $this->view['content']['body'] = '';
+    }//end setContentIndex;
 
     //поспроение заголовка шаблонной страницы
     public function setHeader () {
@@ -78,7 +84,17 @@ class View extends Singleton {
                 }
             }//end JS
 
-
+        //font - локальные модули
+        if (isset(Core::gi()->config['head']['local']['font'])) {
+            $this->view['header']['font'] .= '<style>';
+            for ($i=0;$i<count(Core::gi()->config['head']['local']['font']);$i++) {
+                $this->view['header']['font'] .= '@font-face {';
+                $this->view['header']['font'] .= 'font-family: sh'.$i.';';
+                $this->view['header']['font'] .=  'src: url('.UVIEW.'font/'.Core::gi()->config['head']['local']['font'][$i].');';
+                $this->view['header']['font'] .= '}';
+                }
+            $this->view['header']['font'] .= '</style>';
+            }//end JS
 
         //построение полного header
         $this->view['headerBuild'] = ''.

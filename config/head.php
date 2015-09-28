@@ -35,9 +35,14 @@ return array(
     "local"     =>      [
                         "css"        =>      [
                                             "shop-base.css",
+                                            "uppper.css"
                                             ],
                         "js"        =>      [
                                             "shop-base.js",
+                                            ],
+                        "font"      =>      [
+                                            "9MkmcXCF.ttf",
+                                            "open-sans.ttf",
                                             ],
                         ],
 
