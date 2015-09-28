@@ -14,22 +14,12 @@ class View extends Singleton {
 	    require_once ($file);
         }//end uView
 
-    //инициализация шаблонна страницы (можно и не делать а сделать это с своем контроллере)
-    public function pageDefault () {
-        $this->setHeader();
-        $this->setUpBody();
-        $this->setDownBody();
-        $this->setHtmlHead();
-        }//end pageDefault
-
-    public function setHtmlHead () {
-        $this->view['html']['head'] = '<!DOCTYPE html>';
-        $this->view['html']['down'] = '</html>';
-        }//end setHtmlHead
-
 
     //поспроение заголовка шаблонной страницы
     public function setHeader () {
+        $this->view['html']['head'] = '<!DOCTYPE html>';
+        $this->view['html']['down'] = '</html>';
+
         $this->view['header']['up']             = '<head>' ;
         $this->view['header']['charset']        = '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
         $this->view['header']['description']    = '<meta name="description" content="'.Core::gi()->config['head']['description']['text'].'"/>';
@@ -90,32 +80,8 @@ class View extends Singleton {
                 }
             $this->view['header']['font'] .= '</style>';
             }//end JS
-
-        //построение полного header
-        /*
-        $this->view['headerBuild'] = ''.
-            $this->view['header']['up'].
-            $this->view['header']['ico'].
-            $this->view['header']['charset'].
-            $this->view['header']['description'].
-            $this->view['header']['keywords'].
-            $this->view['header']['title'].
-            $this->view['header']['css'].
-            $this->view['header']['js'].
-            $this->view['header']['down'];
-        */
-
         }//end setHeader
 
-    //построение заголовка тела шаблонной страницы
-    public function setUpBody () {
-        $this->view['body']['up'] = "<body>";
-        }
-
-    //построение подвала тела шаблонной страницы
-    public function setDownBody () {
-        $this->view['body']['down'] = "</body>";
-        }
 
     //общее отображение данных
 	//$file		-	переданное начало файла отображения
