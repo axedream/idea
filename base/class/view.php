@@ -17,13 +17,11 @@ class View extends Singleton {
 
     //поспроение заголовка шаблонной страницы
     public function setHeader () {
-        $this->view['header']['up']             = '<head>' ;
         $this->view['header']['charset']        = '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
         $this->view['header']['description']    = '<meta name="description" content="'.Core::gi()->config['head']['description']['text'].'"/>';
         $this->view['header']['keywords']       = '<meta name="keywords" content="'.Core::gi()->config['head']['keywords']['text'].'"/>';
         $this->view['header']['ico']            = '<link type="image/gif" rel="shortcut icon" href="favicon.gif" />';
         $this->view['header']['title']          = '<title>'.Core::gi()->config['head']['title']['text'].'</title>';
-        $this->view['header']['down']           = '</head>';
 
         //css - внешние модули
         foreach (Core::gi()->config['head']['ext']['css'] as $cssExtName => $ext) {
