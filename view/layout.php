@@ -14,7 +14,7 @@
 <body>
             <div class="col-md-12 header">
                 <div class="row carousel-holder">
-                    <div class="textHeader">Супер магазин супер обуви</div>
+                    <div class="textHeader">Магазин обуви для мальчиков и девочек</div>
                 </div>
             </div>
 

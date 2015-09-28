@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12"><div class="divHeader baseMenu">--Charlie--</div></div>
-        <div class="col-md-12"><img src="<?= UVIEW ?>img/charlie.jpg" /></div>
+        <div class="col-md-12"><img src="<?= URL.UVIEW ?>img/charlie.jpg" /></div>
         <div class="col-md-12"><div class="divHeader lowMenu">Обувь для всей семьи</div></div>
 
         <div class="col-md-3"></div>

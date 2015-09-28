@@ -43,11 +43,11 @@ class View extends Singleton {
             //если внутри несколько css то
             if (is_array($ext['directory'])) {
                 for ($i=0;$i<count($ext['directory']);$i++)
-                    $this->view['header']['css'] .= '<link rel="stylesheet" type="text/css" href='.MEXT.$ext['directory'][$i].'>';
+                    $this->view['header']['css'] .= '<link rel="stylesheet" type="text/css" href='.URL.MEXT.$ext['directory'][$i].'>';
                     }
             //если один css то
             else {
-                $this->view['header']['css'] .= '<link rel="stylesheet" type="text/css" href='.MEXT.$ext['directory'].'>';
+                $this->view['header']['css'] .= '<link rel="stylesheet" type="text/css" href='.URL.MEXT.$ext['directory'].'>';
                 }
             }//end nameCSS
 
@@ -57,25 +57,25 @@ class View extends Singleton {
             //если внутри несколько css то
             if (is_array($ext['directory'])) {
                 for ($i=0;$i<count($ext['directory']);$i++)
-                    $this->view['header']['js'] .= '<script type="text/javascript" src="'.MEXT.$ext['directory'][$i].'"></script>';
+                    $this->view['header']['js'] .= '<script type="text/javascript" src="'.URL.MEXT.$ext['directory'][$i].'"></script>';
                 }
             //если один css то
             else {
-                $this->view['header']['js'] .= '<script type="text/javascript" src="'.MEXT.$ext['directory'].'"></script>';
+                $this->view['header']['js'] .= '<script type="text/javascript" src="'.URL.MEXT.$ext['directory'].'"></script>';
                 }
             }//end nameCSS
 
         //css - локальные модули
         if (isset(Core::gi()->config['head']['local']['css'])) {
             for ($i=0;$i<count(Core::gi()->config['head']['local']['css']);$i++) {
-                $this->view['header']['css'] .= '<link rel="stylesheet" type="text/css" href='.UVIEW.'css/'.Core::gi()->config['head']['local']['css'][$i].'>';
+                $this->view['header']['css'] .= '<link rel="stylesheet" type="text/css" href='.URL.UVIEW.'css/'.Core::gi()->config['head']['local']['css'][$i].'>';
                 }
             }//end CSS
 
         //js - локальные модули
         if (isset(Core::gi()->config['head']['local']['js'])) {
             for ($i=0;$i<count(Core::gi()->config['head']['local']['js']);$i++) {
-                $this->view['header']['js'] .= '<script type="text/javascript" src="'.UVIEW.'css/'.Core::gi()->config['head']['local']['js'][$i].'"></script>';
+                $this->view['header']['js'] .= '<script type="text/javascript" src="'.URL.UVIEW.'js/'.Core::gi()->config['head']['local']['js'][$i].'"></script>';
                 }
             }//end JS
 
@@ -85,7 +85,7 @@ class View extends Singleton {
             for ($i=0;$i<count(Core::gi()->config['head']['local']['font']);$i++) {
                 $this->view['header']['font'] .= '@font-face {';
                 $this->view['header']['font'] .= 'font-family: sh'.$i.';';
-                $this->view['header']['font'] .=  'src: url('.UVIEW.'font/'.Core::gi()->config['head']['local']['font'][$i].');';
+                $this->view['header']['font'] .=  'src: url('.URL.UVIEW.'font/'.Core::gi()->config['head']['local']['font'][$i].');';
                 $this->view['header']['font'] .= '}';
                 }
             $this->view['header']['font'] .= '</style>';
