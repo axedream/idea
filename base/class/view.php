@@ -17,9 +17,6 @@ class View extends Singleton {
 
     //поспроение заголовка шаблонной страницы
     public function setHeader () {
-        $this->view['html']['head'] = '<!DOCTYPE html>';
-        $this->view['html']['down'] = '</html>';
-
         $this->view['header']['up']             = '<head>' ;
         $this->view['header']['charset']        = '<meta http-equiv="content-type" content="text/html; charset=utf-8" />';
         $this->view['header']['description']    = '<meta name="description" content="'.Core::gi()->config['head']['description']['text'].'"/>';

@@ -100,25 +100,9 @@ class Core extends Singleton {
     //метод групповой обработки событий (старт запуска сайта как единого приложения)
     public function run() {
         $this->readConfig();                            //инициализируем чтение конфигурации
-        //$this->setDefaultValue(TRUE,TRUE,TRUE);         //устанавливаем значения конроллера, действия, ИД по умолчанию
         $this->getParamRequest();                       //получаем параметры запроса пользователя
         $this->parserParamRequest();                    //парсим параметры запроса пользователя
         $this->execConActId();                          //попытка выполнения контроллера, действия пользователя, либо дефолтного контроллера
         }//end fucntio run()
 
-    //функция тестирования различных методов (с отключенным дефолтным отображением)
-    public function test($key=FALSE) {
-        if ($key=="routing") {
-            $this->readConfig();
-            $this->setDefaultValue(TRUE,TRUE,TRUE);
-            $this->getParamRequest();
-            $this->parserParamRequest();
-
-            echo "<pre>";
-            var_dump($this->config);
-            echo "<br>";
-            var_dump($this->router);
-            echo "</pre>";
-            }//end key=ROUTING
-        }//end function test()
     }
