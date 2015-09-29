@@ -54,15 +54,26 @@
 }
 
 .leftMenu {
-    padding-top: 40px;
+    padding-top: 8px;
     font-style: italic;
     font-family: 'sh1', Arial, sans-serif;
     font-size: 18px;
     font-weight: 300;
     border: 1px;
 }
-.headerM {
-    padding-left: 15px;
+
+/*заголовок тела*/
+.blockHeader {
+    font-style: italic;
+    font-family: 'sh1', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    border: 1px;
+}
+
+/*тело*/
+.bodyS {
+    padding-top: 8px;
 }
 
 /*подвал*/

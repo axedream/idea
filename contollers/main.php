@@ -8,8 +8,10 @@ class Main {
 	    //----------отображаем страницу шаблона по умолчанию
         //строим заготовку страницы
         View::gi()->setHeader();
-        //устанавливаем переменную content равную файлу конента
-        View::gi()->show('index');
+        View::gi()->view['content']['header']               =   View::gi()->show('header','',1);            //заголовок (верхеяя полоса)
+        View::gi()->view['content']['menu']['left-brends']  =   View::gi()->show('menu_left_brends','',1);  //меню брендов
+        View::gi()->view['content']['body']                 =   View::gi()->show('index','',1);             //контент тела
+        View::gi()->view['content']['footer']               =   View::gi()->show('footer','',1);            //подвал (нижняя полоса)
         //вывести в общем шаблоне результат
         View::gi()->uView('layout');
 	    }//end Index
