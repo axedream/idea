@@ -8,19 +8,21 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12"><div class="divHeader baseMenu">--iCharlie.ru--</div></div>
+                <div class="col-md-12"><div class="divHeader baseMenu">ЧАРЛИ</div></div>
                 <div class="col-md-12"><img src="<?= URL.UVIEW ?>img/charlie.jpg" /></div>
-                <div class="col-md-12"><div class="divHeader lowMenu">Обувь для мальчиков и девочек</div></div>
+                <div class="col-md-12"><div class="divHeader lowMenu">Обувь на все времена</div></div>
 
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
                 	<div class="lifted baseMenu">
                 		<a href="#">Главная</a>
                 		<a href="#">Для девочек</a>
                 		<a href="#">Для мальчиков</a>
+                		<a href="#">Распродажа</a>
+                		<a href="#">Новинки</a>
                 	</div>
                 </div>
-                <div class="col-md-3"></div>
+                <div class="col-md-1"></div>
             </div>
         </div>
 

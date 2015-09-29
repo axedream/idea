@@ -21,7 +21,7 @@
 .baseMenu {
     font-style: italic;
     font-family: 'sh0', Arial, sans-serif;
-    font-size: 19px;
+    font-size: 25px;
     font-weight: 500;
     margin-left: 10px;
     margin-right: 10px;
@@ -30,7 +30,7 @@
 .lowMenu {
     font-style: italic;
     font-family: 'sh0', Arial, sans-serif;
-    font-size: 22px !important;
+    font-size: 32px !important;
     font-weight: 200;
     margin-left: 10px;
     margin-right: 10px;
