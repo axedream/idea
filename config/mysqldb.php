@@ -2,9 +2,11 @@
 //--конфигурация базы данных mysql--//
 return array(
     'system'      =>    [
-                        'user'      =>      'root',
+                        'user'      =>      'gb_idea',
+                        'host'      =>      'localhost',
+                        'port'      =>      '3306',
                         'pass'      =>      '',
-                        'db'        =>      'idea',
+                        'db'        =>      'gb_idea',
                         'charset'   =>      'utf8',
                         ],
 );
