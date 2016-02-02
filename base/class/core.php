@@ -64,7 +64,7 @@ class Core extends Singleton {
 			$controller->$action($this->router['id']);              //выполняем метод переданный пользователем
             }
         else {                                                      //если метода  не существует оставляем тот же контроллер но пробуем дефолтный метод
-            $action     = $this->config['default']['action'];       //дефолтный метод
+            $action = $this->config['default']['action'];           //дефолтный метод
             if(method_exists($controller, $action)) {
                 $controller = new $controller;                      //дефолтный объект
                 $controller->$action($this->router['id']);          //выполняем дефолтный метод, дефолтного класса с заданным id
@@ -89,7 +89,7 @@ class Core extends Singleton {
         $this->setDefaultValue(TRUE,TRUE,TRUE);         //устанавливаем значения конроллера, действия, ИД по умолчанию
         $this->getParamRequest();                       //получаем параметры запроса пользователя
         $this->parserParamRequest();                    //парсим параметры запроса пользователя
-        //$this->execConActId();                          //попытка выполнения контроллера, действия пользователя, либо дефолтного контроллера
+        $this->execConActId();                          //попытка выполнения контроллера, действия пользователя, либо дефолтного контроллера
         }//end fucntio run()
 
     //функция тестирования различных методов (с отключенным дефолтным отображением)
