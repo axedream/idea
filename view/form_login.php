@@ -1,43 +1,39 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="hero-unit">
+					<h1>Вы вошли как Гось! <p>Пройдите Авторизацию.</h1>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+
+		</div>
+
+
+		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-4">
 				</div>
 				<div class="col-md-4">
 					<form role="form">
 						<div class="form-group">
-							 
+
 							<label for="exampleInputEmail1">
-								Email address
+								Введите имя пользователя
 							</label>
-							<input type="email" class="form-control" id="exampleInputEmail1" />
+							<input type="email" class="form-control" id="login" />
 						</div>
 						<div class="form-group">
-							 
+
 							<label for="exampleInputPassword1">
-								Password
+								Введите пароль
 							</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" />
+							<input type="password" class="form-control" id="password" />
 						</div>
-						<div class="form-group">
-							 
-							<label for="exampleInputFile">
-								File input
-							</label>
-							<input type="file" id="exampleInputFile" />
-							<p class="help-block">
-								Example block-level help text here.
-							</p>
-						</div>
-						<div class="checkbox">
-							 
-							<label>
-								<input type="checkbox" /> Check me out
-							</label>
-						</div> 
 						<button type="submit" class="btn btn-default">
-							Submit
+							Войти
 						</button>
 					</form>
 				</div>

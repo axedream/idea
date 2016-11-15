@@ -11,7 +11,7 @@ class App {
 
     public function index() {
         View::gi()->title = 'Тест (неавторизированный пользователь)';
-        View::gi()->show('form_login',[],0);
+        View::gi()->show('form_login');
     }
 
 }

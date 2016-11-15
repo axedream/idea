@@ -1,0 +1,10 @@
+.vyrovnyat {
+    height: 7em; /* можно заменить на min-height */
+    text-align: center;
+    background: #fff5d7;
+}
+.vyrovnyat div {
+    display: inline-block;
+    vertical-align: middle;
+    background: #9F9;
+}

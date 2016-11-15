@@ -100,14 +100,27 @@ class view extends Singleton {
 
     public function show($filename='',$mass_array=[],$show=FALSE) {
         if ((isset($filename) && $filename!='') && file_exists(LVIEW.$filename.'.php') ) {
+                //по умолчанию вывод падает в переменную content
                 if(!$show) {
-                    require_once(LVIEW . $filename.'.php');
-                } else {
                     ob_start();
                     require_once(LVIEW . $filename.'.php');
-                    $out = ob_get_contents();
+                    $this->content = ob_get_contents();
                     ob_end_clean();
-                    return $out;
+                } else {
+                    switch ($show) {
+                        //return - возвращает содержимое файла обратно
+                        case 'return' :
+                            ob_start();
+                            require_once(LVIEW . $filename.'.php');
+                            $out = ob_get_contents();
+                            ob_end_clean();
+                            return $out;
+                        break;
+                        //выводит содержимое контента прямо в месте вызова
+                        case 'this' :
+                            require_once(LVIEW . $filename.'.php');
+                        break;
+                    }
                 }
             } else {
             return FALSE;

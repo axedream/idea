@@ -29,6 +29,11 @@ return array(
                                                                                                         "phpgrid/lib/js/jqgrid/css/ui.jqgrid.css",
                                                                                                         ],
                                                                         ],
+                                            "base"              =>      [
+                                                                        "directory"         =>          [
+                                                                                                        "base/base.css",
+                                                                                                        ],
+                                                                        ],
                                             ],
                         ],
 
