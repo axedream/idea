@@ -20,16 +20,16 @@
 					<form role="form">
 						<div class="form-group">
 
-							<label for="exampleInputEmail1">
+							<label>
 								Введите имя пользователя
 							</label>
 							<input type="email" class="form-control" id="login" />
 						</div>
 						<div class="form-group">
 
-							<label for="exampleInputPassword1">
+							<label>
 								Введите пароль
-							</label> 
+							</label>
 							<input type="password" class="form-control" id="password" />
 						</div>
 						<button type="submit" class="btn btn-default">

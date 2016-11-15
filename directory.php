@@ -8,5 +8,6 @@ const LCLASS        =   'class/';               //локальные класс�
 const BVIEW         =   BASE.'view/';           //базовые отображения
 const LVIEW         =   'view/';                //локальные отображеия
 const MODULES       =   'modules/';             //модули
+const MODELS        =   'models/';              //модели
 const MEXT          =   MODULES.'ext/';         //внешние модули
 const MLOC          =   MODULES.'local/';       //локальные модули
