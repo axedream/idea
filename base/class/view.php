@@ -2,8 +2,11 @@
 //общий класса для формирования отображени
 class view extends Singleton {
 
-    public $view;      //массив общего отображения
-    public $out;       //полное построение html кода
+    public $view;           //массив общего отображения
+    public $out;            //полное построение html кода
+    public $content='';     //основной контент
+    public $title;          //заголовок страницы
+
 
 
     //инициализация шаблонна страницы (можно и не делать а сделать это с своем контроллере)
@@ -15,8 +18,8 @@ class view extends Singleton {
         }//end pageDefault
 
     public function setHtmlHead () {
-        $this->view['html']['head'] = '<!DOCTYPE html>';
         $this->view['html']['down'] = '</html>';
+        $this->view['html']['head'] = '<!DOCTYPE html>';
         }//end setHtmlHead
 
     //поспроение заголовка шаблонной страницы
@@ -58,6 +61,9 @@ class view extends Singleton {
 
 
         //построение полного header
+        if (isset($this->title) && !$this->title=='') {
+            $this->view['header']['title'] = '<title>'.$this->title.'</title>';
+        }
         $this->view['headerBuild'] = ''.
             $this->view['header']['up'].
             $this->view['header']['ico'].
@@ -80,6 +86,33 @@ class view extends Singleton {
     public function setDownBody () {
         $this->view['body']['down'] = "</body>";
         }
+
+    public function getPage(){
+        if (View::gi()->content!='NO') {
+            View::gi()->pageDefault();
+            echo View::gi()->view['html']['head'];
+            echo View::gi()->view['headerBuild'];
+            echo View::gi()->view['body']['up'];
+            echo View::gi()->content;
+            echo View::gi()->view['body']['down'];
+        }
+    }
+
+    public function show($filename='',$mass_array=[],$show=FALSE) {
+        if ((isset($filename) && $filename!='') && file_exists(LVIEW.$filename.'.php') ) {
+                if(!$show) {
+                    require_once(LVIEW . $filename.'.php');
+                } else {
+                    ob_start();
+                    require_once(LVIEW . $filename.'.php');
+                    $out = ob_get_contents();
+                    ob_end_clean();
+                    return $out;
+                }
+            } else {
+            return FALSE;
+        }
+    }
 
 
 }//end class view
