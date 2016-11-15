@@ -29,7 +29,7 @@
 
 							<label for="exampleInputPassword1">
 								Введите пароль
-							</label>
+							</label> 
 							<input type="password" class="form-control" id="password" />
 						</div>
 						<button type="submit" class="btn btn-default">
